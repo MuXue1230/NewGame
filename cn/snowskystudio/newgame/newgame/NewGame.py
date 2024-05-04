@@ -51,6 +51,7 @@ class NewGame:
                             self.logger.debug(str(pygame.display.get_window_size()))
                             self.logger.debug(str(self.past_vscreen.getSize()))
                         else:
+                            pygame.display.set_mode(pyautogui.size(), pygame.RESIZABLE)
                             screen.setScreen(pygame.display.set_mode(self.past_vscreen.getSize(), pygame.RESIZABLE))
                             self.logger.debug(str(self.past_vscreen.getSize()))
                             self.config.getScreen().setSize(pygame.display.get_window_size())

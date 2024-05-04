@@ -30,5 +30,7 @@
     "gui.newgame.load.tip28": "坚持不懈，每一次努力都会有所收获。",
     "gui.newgame.load.tip29": "和朋友分享游戏经历，共同探讨游戏的乐趣。",
     "gui.newgame.load.tip30": "享受游戏的过程，不要过分追求结果。",
-    "gui.newgame.load.load": "加载中……"
+    "gui.newgame.load.load": "加载中……",
+    "gui.newgame.logo": "NewGame",
+    "gui.newgame.welcome.describe": "by 木雪1230"
 }
