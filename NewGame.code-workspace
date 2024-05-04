@@ -1,0 +1,21 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"name": "Main",
+				"type": "debugpy",
+				"request": "launch",
+				"program": "launch.py",
+				"console": "integratedTerminal",
+				"args": "${command:pickArgs}"
+			}
+		]
+	}
+}
