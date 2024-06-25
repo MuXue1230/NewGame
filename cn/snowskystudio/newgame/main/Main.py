@@ -1,4 +1,6 @@
 import os
+
+import pygame
 from cn.snowskystudio.gameapi.utils.Arguments import Arguments
 from cn.snowskystudio.gameapi.utils.Configuration import Configuration
 from cn.snowskystudio.newgame.client.renderer.Screen import Screen
@@ -48,7 +50,10 @@ class Main:
         self.game = NewGame(self.user, self.session_id, self.config, self.argument)
         self.screen = Screen(self.game.config.getScreen(), self.config)
         self.screen.init()
-        self.game.start(self.screen)
+        try:
+            self.game.start(self.screen)
+        except pygame.error:
+            pass
         self.game.stop()
         self.config.save()
         return 0

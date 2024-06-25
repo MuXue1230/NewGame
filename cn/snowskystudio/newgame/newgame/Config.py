@@ -1,14 +1,14 @@
+import pyautogui
 from cn.snowskystudio.gameapi.utils.Arguments import Arguments
 from cn.snowskystudio.gameapi.utils.Configuration import Configuration
 from cn.snowskystudio.newgame.client.renderer.VirtulScreen import VirtualScreen
-from cn.snowskystudio.newgame.test.Logger import Logger
 
 
 class Config:
     _objects = ['screen']
-    def __init__(self, out_conf:Configuration, run_args:Arguments, logger:Logger) -> None:
+    def __init__(self, out_conf:Configuration, run_args:Arguments) -> None:
         self.screen = VirtualScreen()
-        self.screen.setSize(out_conf.get('size'))
+        self.screen.setSize(pyautogui.size())
         self.gui = out_conf.get('gui')
         self.lang = out_conf.get('lang')
         if run_args.get_arg('width') and run_args.get_arg('height'):

@@ -32,5 +32,9 @@
     "gui.newgame.load.tip30": "享受游戏的过程，不要过分追求结果。",
     "gui.newgame.load.load": "加载中……",
     "gui.newgame.logo": "NewGame",
-    "gui.newgame.welcome.describe": "by 木雪1230"
+    "gui.newgame.welcome.describe": "by 木雪1230",
+    "gui.newgame.main.button.start": "开始游戏",
+    "gui.newgame.main.button.muti_play": "多人模式",
+    "gui.newgame.main.button.settings": "设置",
+    "gui.newgame.main.button.exit": "退出游戏"
 }

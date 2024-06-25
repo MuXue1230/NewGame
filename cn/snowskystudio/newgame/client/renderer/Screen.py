@@ -11,7 +11,7 @@ class Screen:
     
     def init(self):
         self.logger.info("Renderer init")
-        self.surface = pygame.display.set_mode((self.width, self.height), pygame.RESIZABLE)
+        self.surface = pygame.display.set_mode((self.width, self.height), pygame.FULLSCREEN | pygame.HWSURFACE)
     
     def getScreen(self) -> pygame.Surface:
         return self.surface

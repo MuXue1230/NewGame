@@ -16,6 +16,8 @@ class WelcomeScreen(BaseScreen):
         self.logo_loc = LanguageLocation("newgame", "gui/logo")
         self.describe_loc = LanguageLocation("newgame", "gui/welcome/describe")
         self.bg_location = ResourceLocation("newgame", "texture/gui/background.jpg")
+        self.logo_y = 0
+        self.describe_tick = 0
     
     def tick(self) -> None:
         if self.size != self.config.getScreen().getSize():
@@ -34,8 +36,21 @@ class WelcomeScreen(BaseScreen):
             img = img.resize(self.config.getScreen().getSize(), PIL.Image.Resampling.BICUBIC)
             self.bg = pygame.image.fromstring(img.tobytes(), self.config.getScreen().getSize(), 'RGBA').convert()
             self.logo = self.font48.render(self.trans.translate(self.logo_loc), True, (255, 255, 255))
-            self.describe = self.font24.render(self.trans.translate(self.describe_loc), True, (255, 255, 255))
+            self.describe = self.font24.render("", True, (255, 255, 255))
+
+            self.logo_y = 0
+            self.describe_tick = 0
+
         self.screen.getScreen().blit(self.bg, (0, 0))
 
-        self.screen.getScreen().blit(self.logo, ((self.config.getScreen().getSize()[0]-self.logo.get_width())/2, (self.config.getScreen().getSize()[1]-self.logo.get_height())/2 - self.c25))
+        self.screen.getScreen().blit(self.logo, ((self.config.getScreen().getSize()[0]-self.logo.get_width())/2, (self.logo_y-self.logo.get_height())/2 - self.c25))
         self.screen.getScreen().blit(self.describe, ((self.config.getScreen().getSize()[0]-self.logo.get_width())/2 + self.c100, (self.config.getScreen().getSize()[1]-self.logo.get_height())/2 + self.c25))
+        
+        if self.logo_y + int(5 * self.c - (10 * self.c)%1) < self.config.getScreen().getSize()[1]:
+            self.logo_y += int(5 * self.c - (10 * self.c)%1)
+        else:
+            self.logo_y = self.config.getScreen().getSize()[1]
+            if self.describe_tick <= 20*len(self.trans.translate(self.describe_loc)):
+                self.describe_tick += 1
+            if self.describe_tick%20 == 0:
+                self.describe = self.font24.render(self.trans.translate(self.describe_loc)[:self.describe_tick//20], True, (255, 255, 255))

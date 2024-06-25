@@ -1,6 +1,5 @@
 import threading
 import time
-import pyautogui
 import pygame
 from cn.snowskystudio.gameapi.utils.Arguments import Arguments
 from cn.snowskystudio.gameapi.utils.Configuration import Configuration
@@ -17,7 +16,7 @@ class NewGame:
         self.user = user
         self.session_id = session_id
         self.logger = Logger("Game", config)
-        self.config = Config(config, args, self.logger)
+        self.config = Config(config, args)
         self.logger.info("Initilizing server and client")
         self.server = Server(self, config)
         self.client = Client(self, config)
@@ -26,6 +25,9 @@ class NewGame:
     
     def start(self, screen:Screen):
         pygame.init()
+        pygame.mixer.pre_init(44100, -16, 8, 8*1024*1024)
+        pygame.mixer.init()
+        pygame.display.set_caption("NewGame")
 
         self.server.start()
         self.client.start(screen)
@@ -38,29 +40,11 @@ class NewGame:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
-                elif event.type == pygame.VIDEORESIZE:
-                    self.config.getScreen().setSize(event.size)
-                elif event.type == pygame.KEYUP:
-                    if event.key == pygame.K_F11:
-                        self.config.getScreen().full()
-                        if self.config.getScreen().isFull():
-                            screen.setScreen(pygame.display.set_mode(pyautogui.size(), pygame.FULLSCREEN | pygame.HWSURFACE))
-                            self.past_vscreen.setSize(self.config.getScreen().getSize())
-                            self.logger.debug(str(self.past_vscreen.getSize()))
-                            self.config.getScreen().setSize(pygame.display.get_window_size())
-                            self.logger.debug(str(pygame.display.get_window_size()))
-                            self.logger.debug(str(self.past_vscreen.getSize()))
-                        else:
-                            pygame.display.set_mode(pyautogui.size(), pygame.RESIZABLE)
-                            screen.setScreen(pygame.display.set_mode(self.past_vscreen.getSize(), pygame.RESIZABLE))
-                            self.logger.debug(str(self.past_vscreen.getSize()))
-                            self.config.getScreen().setSize(pygame.display.get_window_size())
-                            self.logger.debug(str(pygame.display.get_window_size()))
 
             self.client.tick()
             end_time = time.time()
-            if end_time - start_time < 1/60:
-                time.sleep(1/60 - (end_time - start_time))
+            if end_time - start_time < 1/120:
+                time.sleep(1/120 - (end_time - start_time))
     
     def serverTick(self) -> None:
         while self.running:
