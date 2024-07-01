@@ -6,10 +6,10 @@ from cn.snowskystudio.newgame.test.Logger import Logger
 
 
 class Server:
-    def __init__(self, game, config:Configuration) -> None:
+    def __init__(self, game) -> None:
         self.game = game
-        self.network = ServerNetworkController(self.game.getConfig())
-        self.logger = Logger("Server", config)
+        self.network = ServerNetworkController()
+        self.logger = Logger("Server")
     
     def start(self) -> None:
         self.network.start()

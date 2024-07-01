@@ -27,7 +27,6 @@ class Main:
             self.config.save()
         self.config.load()
         # Set Up Config
-        self.logger.reconfig(self.config)
         self.config.setLogger(self.logger)
         self.argument.setLogger(self.logger)
         # Processe Argument
@@ -48,7 +47,7 @@ class Main:
         #Start Game
         self.logger.info("Starting Game...")
         self.game = NewGame(self.user, self.session_id, self.config, self.argument)
-        self.screen = Screen(self.game.config.getScreen(), self.config)
+        self.screen = Screen(self.game.config.getScreen())
         self.screen.init()
         try:
             self.game.start(self.screen)

@@ -13,8 +13,8 @@ class ServerNetworkController:
     HOST = '::1'
     PORT = 32768
 
-    def __init__(self, config:Configuration) -> None:
-        self.logger = Logger("ServerNetworkController", config)
+    def __init__(self) -> None:
+        self.logger = Logger("ServerNetworkController")
         self.socket = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
         self.logger.info("Server socket initilized.")
         self.listening = False
@@ -36,7 +36,7 @@ class ServerNetworkController:
             self.logger.info("Server socket accepted connection from %s %s." %(addr[0], addr[1]))
             self.clients.append(conn)
     
-    def get_clients(self) -> list: return self.clients
+    def get_clients(self) -> list[socket.socket]: return self.clients
     
     def send(self, conn_id:int, data:Any) -> None:
         if conn_id < len(self.clients):

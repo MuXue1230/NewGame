@@ -15,10 +15,10 @@ class NewGame:
     def __init__(self, user:str, session_id:str, config:Configuration, args:Arguments) -> None:
         self.user = user
         self.session_id = session_id
-        self.logger = Logger("Game", config)
+        self.logger = Logger("Game")
         self.config = Config(config, args)
         self.logger.info("Initilizing server and client")
-        self.server = Server(self, config)
+        self.server = Server(self)
         self.client = Client(self, config)
         self.running = True
         self.past_vscreen = VirtualScreen(*self.config.getScreen().getSize())

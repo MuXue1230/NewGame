@@ -5,9 +5,9 @@ from cn.snowskystudio.newgame.test.Logger import Logger
 
 
 class Screen:
-    def __init__(self, virtual:VirtualScreen, config:Configuration) -> None:
+    def __init__(self, virtual:VirtualScreen) -> None:
         self.width, self.height = virtual.getSize()
-        self.logger = Logger("Renderer", config)
+        self.logger = Logger("Renderer")
     
     def init(self):
         self.logger.info("Renderer init")

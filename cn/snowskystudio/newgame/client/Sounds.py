@@ -7,9 +7,9 @@ from cn.snowskystudio.newgame.test.Logger import Logger
 
 
 class Sounds:
-    def __init__(self, config:Configuration) -> None:
+    def __init__(self) -> None:
         self.loaded = {}
-        self.logger = Logger("Mixer", config)
+        self.logger = Logger("Mixer")
         self.music_running = False
     
     def get(self, loc:ResourceLocation) -> pygame.mixer.Sound:

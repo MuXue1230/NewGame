@@ -8,6 +8,7 @@ from cn.snowskystudio.gameapi.utils.Configuration import Configuration
 from cn.snowskystudio.newgame.client.Sounds import Sounds
 from cn.snowskystudio.newgame.client.renderer.Screen import Screen
 from cn.snowskystudio.newgame.client.renderer.VirtulScreen import VirtualScreen
+from cn.snowskystudio.newgame.gui.Animations import Animations
 from cn.snowskystudio.newgame.gui.BaseScreen import BaseScreen
 from cn.snowskystudio.newgame.gui.compact.Button import Button
 from cn.snowskystudio.newgame.resource.LanguageLocation import LanguageLocation
@@ -33,17 +34,21 @@ class MainScreen(BaseScreen):
         self.title_loc = LanguageLocation("newgame", "gui/main/title")
         self.logo_loc = LanguageLocation("newgame", "gui/logo")
         self.describe_loc = LanguageLocation("newgame", "gui/welcome/describe")
-
-        self.animation = 0
     
     def __button_start(self):
-        self.start_button.status = Button.DISABLED
+        self.client.loaded = True
+        self.client.processing = True
+        self.client.main = False
     
     def __button_muti_play(self):
-        self.muti_play_button.status = Button.DISABLED
+        self.client.loaded = True
+        self.client.processing = True
+        self.client.main = False
     
     def __button_settings(self):
-        self.settings_button.status = Button.DISABLED
+        self.client.loaded = True
+        self.client.processing = True
+        self.client.main = False
     
     def __button_exit(self):
         self.game.running = False
@@ -118,22 +123,9 @@ class MainScreen(BaseScreen):
         self.exit_button.set_pos(self.size[0]//2 - self.exit_button.normal.get_width()//2, self.size[1] // 2 - self.exit_button.normal.get_height()//2 + self.c150)
         self.exit_button.set_text(self.font16.render(self.trans.translate(LanguageLocation("newgame", "gui/main/button/exit")), True, (255, 255, 255)))
 
-        self.transition_animation = []
-        for i in range(0, 256, 4):
-            frame = pygame.image.load(self.bg_location.get_full_path()).convert_alpha()
-            img = PIL.Image.frombytes('RGBA', frame.get_size(), pygame.image.tostring(frame, 'RGBA'))
-            img = img.resize(self.size, PIL.Image.Resampling.BICUBIC)
-            frame = pygame.image.fromstring(img.tobytes(), self.size, 'RGBA').convert_alpha()
-            frame_screen = Screen(VirtualScreen(*self.size), self.config)
-            frame_screen.setScreen(frame)
-            frame_screen.getScreen().blit(self.logo, ((self.config.getScreen().getSize()[0]-self.logo.get_width())/2, (self.config.getScreen().getSize()[1]-self.logo.get_height())/2 - self.c100))
-            frame_screen.getScreen().blit(self.describe, ((self.config.getScreen().getSize()[0]-self.logo.get_width())/2 + self.c100, (self.config.getScreen().getSize()[1]-self.logo.get_height())/2 - self.c50))
-            self.start_button.pre_render(frame_screen)
-            self.muti_play_button.pre_render(frame_screen)
-            self.settings_button.pre_render(frame_screen)
-            self.exit_button.pre_render(frame_screen)
-            frame.set_alpha(i)
-            self.transition_animation.append(frame_screen.getScreen())
+        self.enter_animation = Animations.MAIN_ENTER_ANIMATION
+        self.enter_animation.init_self(self)
+        self.enter_animation.get_ready()
         
         self.client.main = True
     
@@ -147,20 +139,16 @@ class MainScreen(BaseScreen):
             threading.Thread(target=self.pre_init).start()
             return
         
-        if self.animation < 256//4:
-            self.screen.getScreen().blit(self.transition_animation[self.animation], (0, 0))
-            self.animation += 1
-            return
+        if self.enter_animation.tick():
+            return 
+        else:
+            self.client.loaded = True
+            self.client.processing = False
         
-        self.client.loaded = True
-        self.client.processing = False
-        
-        self.screen.getScreen().blit(self.transition_animation[self.animation - 1], (0, 0))
-        
-        self.screen.getScreen().blit(self.logo, ((self.config.getScreen().getSize()[0]-self.logo.get_width())/2, (self.config.getScreen().getSize()[1]-self.logo.get_height())/2 - self.c100))
-        self.screen.getScreen().blit(self.describe, ((self.config.getScreen().getSize()[0]-self.logo.get_width())/2 + self.c100, (self.config.getScreen().getSize()[1]-self.logo.get_height())/2 - self.c50))
-
-        self.start_button.tick(self.screen)
-        self.muti_play_button.tick(self.screen)
-        self.settings_button.tick(self.screen)
-        self.exit_button.tick(self.screen)
+            self.screen.getScreen().blit(self.logo, ((self.config.getScreen().getSize()[0]-self.logo.get_width())/2, (self.config.getScreen().getSize()[1]-self.logo.get_height())/2 - self.c100))
+            self.screen.getScreen().blit(self.describe, ((self.config.getScreen().getSize()[0]-self.logo.get_width())/2 + self.c100, (self.config.getScreen().getSize()[1]-self.logo.get_height())/2 - self.c50))
+    
+            self.start_button.tick(self.screen)
+            self.muti_play_button.tick(self.screen)
+            self.settings_button.tick(self.screen)
+            self.exit_button.tick(self.screen)

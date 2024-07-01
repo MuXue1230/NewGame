@@ -11,8 +11,8 @@ class ClientNetworkController:
     HOST = '::1'
     PORT = 32768
 
-    def __init__(self, config: Configuration) -> None:
-        self.logger = Logger("ClientNetworkController", config)
+    def __init__(self) -> None:
+        self.logger = Logger("ClientNetworkController")
         self.socket = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
         self.logger.info("Client socket initialized.")
         self.connected = False

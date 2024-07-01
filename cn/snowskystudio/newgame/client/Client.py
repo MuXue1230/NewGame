@@ -14,10 +14,10 @@ from cn.snowskystudio.newgame.test.Logger import Logger
 class Client:
     def __init__(self, game, loc_config:Configuration) -> None:
         self.game = game
-        self.network = ClientNetworkController(self.game.getConfig())
-        self.logger = Logger("Client", loc_config)
+        self.network = ClientNetworkController()
+        self.logger = Logger("Client")
         self.config = game.getConfig()
-        self.mixer = Sounds(loc_config)
+        self.mixer = Sounds()
         self.loaded = False
         self.processing = False
         self.main = False
