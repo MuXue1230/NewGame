@@ -1,6 +1,6 @@
 class ResourceLocation:
-    def __init__(self, id, path):
-        self.id = id
+    def __init__(self, _id, path):
+        self.id = _id
         self.path = path
         self.full_path = 'assets/' + self.id + '/' + self.path
         self.name = self.path.split('/')[-1]

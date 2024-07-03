@@ -2,7 +2,8 @@ from cn.snowskystudio.newgame.resource.ResourceLocation import ResourceLocation
 
 
 class AnimationLocation(ResourceLocation):
-    def __init__(self, id, path):
-        self.id = id
+    def __init__(self, _id, path):
+        super().__init__(_id, path)
+        self.id = _id
         self.path = path.split('/')
-        self.full_path = self.path[0]+'.'+id+'.'+'.'.join(self.path[1:])
+        self.full_path = self.path[0] + '.' + _id + '.' + '.'.join(self.path[1:])
