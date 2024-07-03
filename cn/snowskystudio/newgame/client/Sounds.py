@@ -32,6 +32,7 @@ class Sounds:
         self.music_running = True
 
     def __music(self, loc_list: list[ResourceLocation]) -> None:
+        self.logger.info("Background music is ready.")
         x = 0
         while self.music_running:
             if x >= len(loc_list):
