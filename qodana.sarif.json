@@ -22671,7 +22671,7 @@
                   "charOffset": 3231,
                   "charLength": 222,
                   "snippet": {
-                    "text": "        self.game.running = False\r\n\r\n    def start(self, screen: Screen, mixer: Sounds) -> None:\r\n        self.mixer = mixer\r\n        self.button_hover_mix = self.mixer.get(ResourceLocation(\"newgame\", \"sound/button.wav\"))\r"
+                    "text": "        self.game.running = False\r\n\r\n    def start(self, screen: Screen, mixer: Sounds):\r\n        self.mixer = mixer\r\n        self.button_hover_mix = self.mixer.get(ResourceLocation(\"newgame\", \"sound/button.wav\"))\r"
                   },
                   "sourceLanguage": "Python"
                 }
@@ -22783,7 +22783,7 @@
                   "charOffset": 767,
                   "charLength": 257,
                   "snippet": {
-                    "text": "    def log(self, msg: str, _type: Type) -> None:\r\n        print(\"[%d:%d:%d][%s/%s] %s\" % (\r\n            time.localtime().tm_hour, time.localtime().tm_min, time.localtime().tm_sec, _type.type_name, self.name, msg))\r\n\r\n    def debug(self, msg: str) -> None:\r"
+                    "text": "    def log(self, msg: str, _type: Type):\r\n        print(\"[%d:%d:%d][%s/%s] %s\" % (\r\n            time.localtime().tm_hour, time.localtime().tm_min, time.localtime().tm_sec, _type.type_name, self.name, msg))\r\n\r\n    def debug(self, msg: str):\r"
                   },
                   "sourceLanguage": "Python"
                 }
@@ -23455,7 +23455,7 @@
                   "charOffset": 387,
                   "charLength": 101,
                   "snippet": {
-                    "text": "\r\n    def tick(self) -> None:\r\n        for client in self.network.get_clients():\r\n            pass\r\n\r"
+                    "text": "\r\n    def tick(self):\r\n        for client in self.network.get_clients():\r\n            pass\r\n\r"
                   },
                   "sourceLanguage": "Python"
                 }
@@ -23511,7 +23511,7 @@
                   "charOffset": 735,
                   "charLength": 136,
                   "snippet": {
-                    "text": "\r\nclass Client:\r\n    def __init__(self, game, loc_config: Configuration) -> None:\r\n        self.screen = None\r\n        self.game = game\r"
+                    "text": "\r\nclass Client:\r\n    def __init__(self, game, loc_config: Configuration):\r\n        self.screen = None\r\n        self.game = game\r"
                   },
                   "sourceLanguage": "Python"
                 }

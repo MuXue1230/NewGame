@@ -1,8 +1,7 @@
 import PIL
 import PIL.Image
 import pygame
-from cn.snowskystudio.newgame.client.Sounds import Sounds
-from cn.snowskystudio.newgame.client.renderer.Screen import Screen
+
 from cn.snowskystudio.newgame.client.gui.Animations import Animations
 from cn.snowskystudio.newgame.client.gui.BaseScreen import BaseScreen
 from cn.snowskystudio.newgame.client.gui.compact.Button import Button
@@ -11,7 +10,7 @@ from cn.snowskystudio.newgame.resource.ResourceLocation import ResourceLocation
 
 
 class MainScreen(BaseScreen):
-    def __init__(self, game, client) -> None:
+    def __init__(self, game, client):
         super().__init__(game, client)
         self.c = 0
         self.c25 = 0
@@ -38,7 +37,6 @@ class MainScreen(BaseScreen):
         self.settings_button = None
         self.exit_button = None
 
-        self.out_animation = Animations.MAIN_OUT_ANIMATION
         self.enter_animation = Animations.MAIN_ENTER_ANIMATION
 
         self.config = game.get_config()
@@ -63,7 +61,7 @@ class MainScreen(BaseScreen):
         self.client.main = True
         self.client.settings = False
         self.out = True
-        self.out_animation.animation_time = 0
+        self.enter_animation.reverse()
 
     def __button_multi_play(self):
         self.client.loading = False
@@ -71,27 +69,27 @@ class MainScreen(BaseScreen):
         self.client.main = True
         self.client.settings = False
         self.out = True
-        self.out_animation.animation_time = 0
+        self.enter_animation.reverse()
 
     def __button_settings(self):
         self.client.loading = False
         self.client.processing = False
-        self.client.main = True
+        self.client.main = False
         self.client.settings = True
-        self.out = False
-        self.out_animation.animation_time = 0
+        self.out = True
+        self.enter_animation.reverse()
 
     def __button_exit(self):
         self.game.running = False
 
-    def start(self, screen: Screen, mixer: Sounds) -> None:
+    def start(self, screen, mixer):
         self.mixer = mixer
         self.button_hover_mix = self.mixer.get(ResourceLocation("newgame", "sound/button.wav"))
         self.button_press_mix = self.mixer.get(ResourceLocation("newgame", "sound/button_click.wav"))
         self.out = False
-        super().start(screen)
+        super().start(screen, mixer)
 
-    def pre_init(self) -> None:
+    def pre_init(self):
         self.c = self.config.get_screen().get_size()[1] / 540 * self.config.get_gui()
         self.c25 = int((25 * self.c) - (25 * self.c) % 1)
         self.c50 = int((50 * self.c) - (50 * self.c) % 1)
@@ -181,20 +179,20 @@ class MainScreen(BaseScreen):
 
         self.enter_animation.init_self(self)
         self.enter_animation.get_ready()
-
-        self.out_animation.init_self(self)
-        self.out_animation.get_ready()
+        
+        while not self.client.DONE:
+            pass
 
         self.client.main = True
 
-    def tick(self) -> None:
-        if self.enter_animation.tick():
-            return
-        elif self.out:
-            if self.out_animation.tick():
+    def tick(self):
+        if self.out:
+            if self.enter_animation.tick():
                 return
             self.out = False
             self.client.main = False
+            return
+        elif self.enter_animation.tick():
             return
         else:
             self.client.loading = False

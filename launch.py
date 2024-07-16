@@ -1,12 +1,12 @@
 import sys
 from cn.snowskystudio.gameapi.launch.Decorators import Decorators
-from cn.snowskystudio.newgame.main.Main import Main
+from cn.snowskystudio.newgame.client.main.Main import Main
 
 DEBUG = True
 
 
 @Decorators.LauncherLogger
-def launch(args: int, argv: list) -> int:
+def launch(args, argv):
     """
     To launch the hole program.
     """

@@ -6,21 +6,21 @@ from cn.snowskystudio.newgame.resource.Translator import Translator
 
 
 class BaseScreen:
-    def __init__(self, game, client) -> None:
-        self.screen = None
+    def __init__(self, game, client):
+        self.screen = Screen
         self.game = game
         self.trans = Translator(self.game.get_config())
         self.client = client
 
     @abstractmethod
-    def pre_init(self) -> None:
+    def pre_init(self):
         pass
 
     @abstractmethod
-    def start(self, screen: Screen) -> None:
+    def start(self, screen, mixer):
         self.screen = screen
         threading.Thread(target=self.pre_init).start()
 
     @abstractmethod
-    def tick(self) -> None:
+    def tick(self):
         pass

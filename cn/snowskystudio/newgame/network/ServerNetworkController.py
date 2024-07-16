@@ -1,7 +1,6 @@
 import pickle
 import socket
 import threading
-from typing import Any
 
 from cn.snowskystudio.newgame.test.Logger import Logger
 from cn.snowskystudio.newgame.test.error.NetworkConnectionIndexOutOfRange import NetworkConnectionIndexOutOfRange
@@ -12,7 +11,7 @@ class ServerNetworkController:
     HOST = 'localhost'
     PORT = 9008
 
-    def __init__(self) -> None:
+    def __init__(self):
         self.listen_thread = None
         self.logger = Logger("ServerNetworkController")
         self.socket = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
@@ -20,7 +19,7 @@ class ServerNetworkController:
         self.listening = False
         self.clients = []
 
-    def start(self) -> None:
+    def start(self):
         self.listening = True
         self.socket.bind((self.HOST, self.PORT))
         self.logger.info("Server socket bound (on %s %s)." % (self.HOST, self.PORT))
@@ -29,7 +28,7 @@ class ServerNetworkController:
         self.listen_thread = threading.Thread(target=self.listener)
         self.listen_thread.start()
 
-    def listener(self) -> None:
+    def listener(self):
         while self.listening:
             try:
                 conn, addr = self.socket.accept()
@@ -38,10 +37,10 @@ class ServerNetworkController:
             self.logger.info("Server socket accepted connection from %s %s." % (addr[0], addr[1]))
             self.clients.append(conn)
 
-    def get_clients(self) -> list[socket.socket]:
+    def get_clients(self):
         return self.clients
 
-    def send(self, conn_id: int, data: Any) -> None:
+    def send(self, conn_id, data):
         if conn_id < len(self.clients):
             self.clients[conn_id].sendall("SENDDATA".encode())
             check = self.clients[conn_id].recv(1024).decode()
@@ -56,7 +55,7 @@ class ServerNetworkController:
                                                    _from="cn.snowskystudio.newgame.network.ServerNetworkController - "
                                                          "Line 43")
 
-    def receive(self, conn_id: int) -> Any:
+    def receive(self, conn_id):
         if conn_id < len(self.clients):
             self.clients[conn_id].sendall("RECIVEDATA".encode())
             check = self.clients[conn_id].recv(1024).decode()

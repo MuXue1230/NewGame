@@ -12,23 +12,22 @@ class Main:
     DEBUG = True
     VERSION = (1, 0, 0, 0)
 
-    def __init__(self) -> None:
+    def __init__(self):
         self.game = None
-        self.user = None
-        self.session_id = None
+        self.user = 'Player'
+        self.session_id = ''
         self.screen = None
         self.logger = Logger("Main")
         self.config = Configuration("config.dat", self.logger)
         self.argument = Arguments(self.logger)
 
-    def main(self, args: int, argv: list) -> int:
+    def main(self, args, argv):
         self.logger.info("Entered Main Function.")
 
         # Load Config
         if not os.path.exists("config.dat"):
             self.config.init()
             self.logger.info("Updating Configuration.")
-            self.config.set_debug(self.DEBUG)
             self.config.save()
         self.config.load()
 
@@ -53,7 +52,7 @@ class Main:
         # Start Game
         self.logger.info("Starting Game...")
         self.game = NewGame(self.user, self.session_id, self.config, self.argument)
-        self.screen = Screen(self.game.config.get_screen())
+        self.screen = Screen(self.game.get_config().get_screen())
         self.screen.init()
         try:
             self.game.start(self.screen)

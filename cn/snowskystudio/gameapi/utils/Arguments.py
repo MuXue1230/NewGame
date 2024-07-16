@@ -1,22 +1,19 @@
-from typing import Any
-
-from cn.snowskystudio.newgame.test.Logger import Logger
 from cn.snowskystudio.newgame.test.error.ArgumentNameDoesNotExists import ArgumentNameDoesNotExists
 
 
 class Arguments:
-    def __init__(self, logger: Logger) -> None:
+    def __init__(self, logger):
         self.args = {}
         self.types = {}
         self.logger = logger
 
-    def set_logger(self, logger: Logger) -> None:
+    def set_logger(self, logger):
         self.logger = logger
 
-    def set_arg(self, arg_name: str, arg_type: Any = str) -> None:
+    def set_arg(self, arg_name, arg_type=str):
         self.types[arg_name] = arg_type
 
-    def get_arg(self, arg_name: str, default: Any = None) -> Any:
+    def get_arg(self, arg_name, default=None):
         if default:
             if arg_name in self.types.keys():
                 if arg_name in self.args.keys():
@@ -35,7 +32,7 @@ class Arguments:
                 raise ArgumentNameDoesNotExists("Argument which is been requested does not exists.",
                                                 _from="cn.snowskystudio.gameapi.utils.Arguments - Line 25")
 
-    def make(self, args: list):
+    def make(self, args):
         temp = {}
         is_set = ""
         for arg in args:

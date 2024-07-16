@@ -36,5 +36,6 @@
     "gui.newgame.main.button.start": "开始游戏",
     "gui.newgame.main.button.muti_play": "多人模式",
     "gui.newgame.main.button.settings": "设置",
-    "gui.newgame.main.button.exit": "退出游戏"
+    "gui.newgame.main.button.exit": "退出游戏",
+    "gui.newgame.base.page_screen.title": "示例页面"
 }

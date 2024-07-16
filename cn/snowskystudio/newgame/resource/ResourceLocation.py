@@ -5,14 +5,11 @@ class ResourceLocation:
         self.full_path = 'assets/' + self.id + '/' + self.path
         self.name = self.path.split('/')[-1]
     
-    def __str__(self):
-        return self.id + ':' + self.path
+    def __str__(self): return self.id + ':' + self.path
     
-    def __repr__(self):
-        return self.__str__()
+    def __repr__(self): return self.__str__()
 
-    def __eq__(self, other):
-        return self.id == other.id and self.path == other.path
+    def __eq__(self, other): return self.id == other.id and self.path == other.path
     
     def get_id(self): return self.id
 

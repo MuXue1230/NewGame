@@ -1,34 +1,33 @@
-from typing import Any, Callable
-from cn.snowskystudio.newgame.client.gui.BaseScreen import BaseScreen
-from cn.snowskystudio.newgame.resource.AnimationLocation import AnimationLocation
-from cn.snowskystudio.newgame.test.Logger import Logger
+import warnings
 
 
 class Animation:
-    def __init__(self, id: AnimationLocation, logger: Logger, ready_func: Callable, tick_func: Callable):
+    def __init__(self, _id, logger, ready_func, tick_func):
         self.screen = None
-        self.id = id
-        self.active = False
-        self.finish = False
+        self.id = _id
         self.animation_time = 0
+        self.animation_dict = {}
         self.logger = logger
         self.tickFunc = tick_func
         self.readyFunc = ready_func
 
-    def init_self(self, scr: BaseScreen):
+    def init_self(self, scr):
         self.screen = scr
 
-    def get_ready(self) -> Any:
+    def get_ready(self):
         return self.readyFunc(self)
 
-    def get_id(self) -> AnimationLocation:
+    def get_id(self):
+        warnings.warn("Function 'get_id' is deprecated", DeprecationWarning)
         return self.id
 
     def tick(self, *args, **argv):
         return self.tickFunc(self, *args, **argv)
-
-    def set_active(self, active: bool) -> None:
-        self.active = active
-
-    def finished(self) -> bool:
-        return self.finish
+    
+    def reset(self):
+        self.animation_time = 0
+        
+    def reverse(self):
+        for animation_list_name in self.animation_dict:
+            self.animation_dict[animation_list_name].reverse()
+        self.reset()

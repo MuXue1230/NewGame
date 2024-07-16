@@ -3,17 +3,17 @@ from cn.snowskystudio.newgame.test.Logger import Logger
 
 
 class Server:
-    def __init__(self, game) -> None:
+    def __init__(self, game):
         self.game = game
         self.network = ServerNetworkController()
         self.logger = Logger("Server")
 
-    def start(self) -> None:
+    def start(self):
         self.network.start()
 
-    def tick(self) -> None:
+    def tick(self):
         for client in self.network.get_clients():
             pass
 
-    def stop(self) -> None:
+    def stop(self):
         self.network.stop()
