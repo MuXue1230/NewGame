@@ -99,7 +99,7 @@ class ProcessScreen(BaseScreen):
         self.loading_animation.init_self(self)
         self.loading_animation.get_ready()
         
-        self.bg = pygame.image.load(self.bg_location.get_full_path()).convert()
+        self.bg = self.game.client.texture.get(self.bg_location)
         img = PIL.Image.frombytes('RGBA', self.bg.get_size(), pygame.image.tostring(self.bg, 'RGBA'))
         img = img.resize(self.config.get_screen().get_size(), PIL.Image.Resampling.BICUBIC)
         self.bg = pygame.image.fromstring(img.tobytes(), self.config.get_screen().get_size(), 'RGBA').convert()

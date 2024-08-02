@@ -9,6 +9,7 @@ from cn.snowskystudio.newgame.client.gui.WelcomeScreen import WelcomeScreen
 from cn.snowskystudio.newgame.network.ClientNetworkController import ClientNetworkController
 from cn.snowskystudio.newgame.resource.ResourceLocation import ResourceLocation
 from cn.snowskystudio.newgame.test.Logger import Logger
+from snowskystudio.newgame.client.Textures import Textures
 
 
 class Client:
@@ -19,6 +20,7 @@ class Client:
         self.logger = Logger("Client")
         self.config = game.get_config()
         self.mixer = Sounds()
+        self.texture = Textures()
         self.loading = True
         self.processing = False
         self.main = False

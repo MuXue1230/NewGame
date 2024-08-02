@@ -4,7 +4,7 @@ import PIL.Image
 import pygame
 from cn.snowskystudio.newgame.client.gui.BaseScreen import BaseScreen
 from cn.snowskystudio.newgame.resource.ResourceLocation import ResourceLocation
-from snowskystudio.newgame.client.gui.compact.Button import Button
+from snowskystudio.newgame.client.gui.compact.BackButton import BackButton
 from snowskystudio.newgame.resource.LanguageLocation import LanguageLocation
 
 
@@ -52,7 +52,7 @@ class BasePageScreen(BaseScreen):
         self.mixer = mixer
         self.button_hover_mix = self.mixer.get(ResourceLocation("newgame", "sound/button.wav"))
         self.button_press_mix = self.mixer.get(ResourceLocation("newgame", "sound/button_click.wav"))
-        super().start(screen, None)
+        super().start(screen, mixer)
 
     @abstractmethod
     def pre_init(self):
@@ -68,50 +68,30 @@ class BasePageScreen(BaseScreen):
         self.font48 = pygame.font.Font(self.font_location.get_full_path(), int(48 * self.c))
         self.size = self.config.get_screen().get_size()
         
-        background = pygame.image.load(self.bg_location.get_full_path()).convert_alpha()
+        background = self.game.client.texture.get(self.bg_location)
         img = PIL.Image.frombytes('RGBA', background.get_size(), pygame.image.tostring(background, 'RGBA'))
         img = img.resize(self.size, PIL.Image.Resampling.BICUBIC)
         self.background = pygame.image.fromstring(img.tobytes(), self.size, 'RGBA').convert_alpha()
         
-        background1 = pygame.image.load(self.bg1_location.get_full_path()).convert_alpha()
+        background1 = self.game.client.texture.get(self.bg1_location)
         img1 = PIL.Image.frombytes('RGBA', background1.get_size(), pygame.image.tostring(background1, 'RGBA'))
         img1 = img1.resize(self.size, PIL.Image.Resampling.BICUBIC)
         self.background1 = pygame.image.fromstring(img1.tobytes(), self.size, 'RGBA').convert_alpha()
         
-        normal = pygame.image.load(self.normal_loc.get_full_path()).convert_alpha()
-        normal_img = PIL.Image.frombytes('RGBA', normal.get_size(), pygame.image.tostring(normal, 'RGBA'))
-        normal_img = normal_img.resize((
-            int(normal_img.size[0] * self.c * 0.8 - (normal_img.size[0] * self.c * 0.8) % 1),
-            int(normal_img.size[1] * self.c * 0.8 - (
-                    normal_img.size[1] * self.c * 0.8) % 1)),
+        btn_img = self.game.client.texture.get(self.normal_loc)
+        btn_img_pil = PIL.Image.frombytes('RGBA', btn_img.get_size(), pygame.image.tostring(btn_img, 'RGBA'))
+        btn_img_pil = btn_img_pil.resize((
+            int(btn_img_pil.size[0] * self.c * 0.8 - (btn_img_pil.size[0] * self.c * 0.8) % 1),
+            int(btn_img_pil.size[1] * self.c * 0.8 - (
+                    btn_img_pil.size[1] * self.c * 0.8) % 1)),
                 PIL.Image.Resampling.BICUBIC)
-        normal = pygame.image.fromstring(normal_img.tobytes(), normal_img.size, 'RGBA').convert_alpha()
-        hover = pygame.image.load(self.hover_loc.get_full_path()).convert_alpha()
-        hover_img = PIL.Image.frombytes('RGBA', hover.get_size(), pygame.image.tostring(hover, 'RGBA'))
-        hover_img = hover_img.resize((int(hover_img.size[0] * self.c * 0.8 - (hover_img.size[0] * self.c * 0.8) % 1),
-                                      int(hover_img.size[1] * self.c * 0.8 - (hover_img.size[1] * self.c * 0.8) % 1)),
-                                     PIL.Image.Resampling.BICUBIC)
-        hover = pygame.image.fromstring(hover_img.tobytes(), hover_img.size, 'RGBA').convert_alpha()
-        pressed = pygame.image.load(self.press_loc.get_full_path()).convert_alpha()
-        pressed_img = PIL.Image.frombytes('RGBA', pressed.get_size(), pygame.image.tostring(pressed, 'RGBA'))
-        pressed_img = pressed_img.resize((int(
-                pressed_img.size[0] * self.c * 0.8 - (pressed_img.size[0] * self.c * 0.8) % 1), int(
-                pressed_img.size[1] * self.c * 0.8 - (pressed_img.size[1] * self.c * 0.8) % 1)),
-                PIL.Image.Resampling.BICUBIC)
-        pressed = pygame.image.fromstring(pressed_img.tobytes(), pressed_img.size, 'RGBA').convert_alpha()
-        disabled = pygame.image.load(self.disabled_loc.get_full_path()).convert_alpha()
-        disabled_img = PIL.Image.frombytes('RGBA', disabled.get_size(), pygame.image.tostring(disabled, 'RGBA'))
-        disabled_img = disabled_img.resize((int(
-                disabled_img.size[0] * self.c * 0.8 - (disabled_img.size[0] * self.c * 0.8) % 1), int(
-                disabled_img.size[1] * self.c * 0.8 - (disabled_img.size[1] * self.c * 0.8) % 1)),
-                PIL.Image.Resampling.BICUBIC)
-        disabled = pygame.image.fromstring(disabled_img.tobytes(), disabled_img.size, 'RGBA').convert_alpha()
+        btn_img = pygame.image.fromstring(btn_img_pil.tobytes(), btn_img_pil.size, 'RGBA').convert_alpha()
         
-        self.back_button = Button()
-        self.back_button.set_img(normal, hover, pressed, disabled)
+        self.back_button = BackButton()
+        self.back_button.set_img(btn_img)
         self.back_button.set_action(self.__button_back)
         self.back_button.set_mix(self.button_hover_mix, self.button_press_mix)
-        self.back_button.set_pos(230, 48)
+        self.back_button.set_pos(0, 0)
         self.back_button.set_text(
                 self.font16.render("", True, (255, 255, 255)))
         
@@ -126,4 +106,4 @@ class BasePageScreen(BaseScreen):
         self.screen.get_screen().blit(self.background, (0, 0))
         self.screen.get_screen().blit(self.background1, (0, 0))
         self.back_button.tick(self.screen)
-        self.screen.get_screen().blit(self.title, (310, 48))
+        self.screen.get_screen().blit(self.title, (200, 0))

@@ -9,11 +9,12 @@ from cn.snowskystudio.newgame.client.gui.BaseScreen import BaseScreen
 from cn.snowskystudio.newgame.resource.ResourceLocation import ResourceLocation
 from snowskystudio.newgame.client.Client import Client
 from snowskystudio.newgame.client.Sounds import Sounds
-from snowskystudio.newgame.client.gui.compact.Button import Button
+from snowskystudio.newgame.client.gui.compact.BackButton import BackButton
 from snowskystudio.newgame.client.renderer.Screen import Screen
 from snowskystudio.newgame.newgame.Config import Config
 from snowskystudio.newgame.newgame.NewGame import NewGame
 from snowskystudio.newgame.resource.LanguageLocation import LanguageLocation
+from snowskystudio.newgame.resource.Translator import Translator
 
 
 class BasePageScreen(BaseScreen):
@@ -44,7 +45,7 @@ class BasePageScreen(BaseScreen):
     
     background: Optional[Surface]
     background1: Optional[Surface]
-    back_button: Optional[Button]
+    back_button: Optional[BackButton]
     
     mixer: Optional[Sounds]
     button_hover_mix: Optional[Sound]
@@ -53,7 +54,11 @@ class BasePageScreen(BaseScreen):
     title_loc: LanguageLocation
     title: Optional[Surface]
     
-    def __init__(self, game: NewGame, client: Client) -> Self: ...
+    screen: Screen
+    trans: Translator
+    
+    def __init__(self, game: NewGame, client: Client) -> Self:
+        ...
     
     @abstractmethod
     def start(self, screen: Screen, mixer: Sounds) -> None: ...

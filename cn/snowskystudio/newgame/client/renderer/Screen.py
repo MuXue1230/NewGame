@@ -12,7 +12,7 @@ class Screen:
 
     def init(self):
         self.logger.info("Renderer init")
-        self.screen = pygame.display.set_mode((7680, 4320), pygame.DOUBLEBUF)
+        self.screen = pygame.display.set_mode((self.width+10, self.height+10), pygame.DOUBLEBUF)
         self.surface = pygame.Surface((self.width, self.height))
 
     def get_screen(self):
@@ -27,10 +27,10 @@ class Screen:
         return new
     
     def draw(self):
-        self.screen.blit(self.surface, (7680 / 2 - self.width / 2, 4320 / 2 - self.height / 2))
+        self.screen.blit(self.surface, (5, 5))
     
     def test(self, x1: int, y1: int, x2: int, y2: int):
-        w, h = (7680 / 2 - self.width / 2, 4320 / 2 - self.height / 2)
+        w, h = (5, 5)
         mouse = pygame.mouse.get_pos()
         if x1 + w <= mouse[0] <= x2 + w and y1 + h <= mouse[1] <= y2 + h:
             return True

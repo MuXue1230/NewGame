@@ -102,7 +102,7 @@ class MainScreen(BaseScreen):
         self.font48 = pygame.font.Font(self.font_location.get_full_path(), int(48 * self.c))
         self.size = self.config.get_screen().get_size()
 
-        normal = pygame.image.load(self.normal_loc.get_full_path()).convert_alpha()
+        normal = self.game.client.texture.get(self.normal_loc)
         normal_img = PIL.Image.frombytes('RGBA', normal.get_size(), pygame.image.tostring(normal, 'RGBA'))
         normal_img = normal_img.resize((
             int(normal_img.size[0] * self.c * 0.8 - (normal_img.size[0] * self.c * 0.8) % 1),
@@ -110,20 +110,20 @@ class MainScreen(BaseScreen):
                     normal_img.size[1] * self.c * 0.8) % 1)),
             PIL.Image.Resampling.BICUBIC)
         normal = pygame.image.fromstring(normal_img.tobytes(), normal_img.size, 'RGBA').convert_alpha()
-        hover = pygame.image.load(self.hover_loc.get_full_path()).convert_alpha()
+        hover = self.game.client.texture.get(self.hover_loc)
         hover_img = PIL.Image.frombytes('RGBA', hover.get_size(), pygame.image.tostring(hover, 'RGBA'))
         hover_img = hover_img.resize((int(hover_img.size[0] * self.c * 0.8 - (hover_img.size[0] * self.c * 0.8) % 1),
                                       int(hover_img.size[1] * self.c * 0.8 - (hover_img.size[1] * self.c * 0.8) % 1)),
                                      PIL.Image.Resampling.BICUBIC)
         hover = pygame.image.fromstring(hover_img.tobytes(), hover_img.size, 'RGBA').convert_alpha()
-        pressed = pygame.image.load(self.press_loc.get_full_path()).convert_alpha()
+        pressed = self.game.client.texture.get(self.press_loc)
         pressed_img = PIL.Image.frombytes('RGBA', pressed.get_size(), pygame.image.tostring(pressed, 'RGBA'))
         pressed_img = pressed_img.resize((int(
             pressed_img.size[0] * self.c * 0.8 - (pressed_img.size[0] * self.c * 0.8) % 1), int(
             pressed_img.size[1] * self.c * 0.8 - (pressed_img.size[1] * self.c * 0.8) % 1)),
             PIL.Image.Resampling.BICUBIC)
         pressed = pygame.image.fromstring(pressed_img.tobytes(), pressed_img.size, 'RGBA').convert_alpha()
-        disabled = pygame.image.load(self.disabled_loc.get_full_path()).convert_alpha()
+        disabled = self.game.client.texture.get(self.disabled_loc)
         disabled_img = PIL.Image.frombytes('RGBA', disabled.get_size(), pygame.image.tostring(disabled, 'RGBA'))
         disabled_img = disabled_img.resize((int(
             disabled_img.size[0] * self.c * 0.8 - (disabled_img.size[0] * self.c * 0.8) % 1), int(

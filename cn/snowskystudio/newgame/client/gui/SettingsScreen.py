@@ -1,9 +1,11 @@
 from cn.snowskystudio.newgame.client.gui.BasePageScreen import BasePageScreen
+from snowskystudio.newgame.resource.LanguageLocation import LanguageLocation
 
 
 class SettingsScreen(BasePageScreen):
     def __init__(self, game, client):
         super().__init__(game, client)
+        self.title_loc = LanguageLocation("newgame", "gui/settings/title")
         self._in = False
     
     def start(self, screen, mixer):

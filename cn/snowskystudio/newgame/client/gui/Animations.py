@@ -1,5 +1,4 @@
 import random
-import time
 import PIL.ImageDraw
 import PIL.Image
 import pygame
@@ -18,7 +17,7 @@ class Animations:
     @staticmethod
     def __main_enter_animation_ready(self):
         self.animation_dict[0] = []
-        frame = pygame.image.load(self.screen.bg_location.get_full_path()).convert_alpha()
+        frame = self.screen.game.client.texture.get(self.screen.bg_location)
         img = PIL.Image.frombytes('RGBA', frame.get_size(), pygame.image.tostring(frame, 'RGBA'))
         img = img.resize(self.screen.size, PIL.Image.Resampling.BICUBIC)
         frame = pygame.image.fromstring(img.tobytes(), self.screen.size, 'RGBA').convert_alpha()

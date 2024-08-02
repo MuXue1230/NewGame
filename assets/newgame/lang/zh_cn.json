@@ -3,7 +3,7 @@
     "gui.newgame.load.tip1": "这个游戏的开发者只有一个人——木雪 1230。",
     "gui.newgame.load.tip2": "作者很懒，源代码没有写任何注释。",
     "gui.newgame.load.tip3": "源码在GitHub上。",
-    "gui.newgame.load.tip4": "作者很懒，源码没写注释。",
+    "gui.newgame.load.tip4": "GitHub: https://github.com/",
     "gui.newgame.load.tip5": "游戏的作者是一个独立开发者，对于玩家的反馈非常重视。",
     "gui.newgame.load.tip6": "这款游戏可能有隐藏的彩蛋和秘密等待着你的发现。",
     "gui.newgame.load.tip7": "尝试在不同的游戏模式下玩游戏，每种模式可能会带来不同的挑战和乐趣。",
@@ -37,5 +37,6 @@
     "gui.newgame.main.button.muti_play": "多人模式",
     "gui.newgame.main.button.settings": "设置",
     "gui.newgame.main.button.exit": "退出游戏",
+    "gui.newgame.settings.title": "设置",
     "gui.newgame.base.page_screen.title": "示例页面"
 }

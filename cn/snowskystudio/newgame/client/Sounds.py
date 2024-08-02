@@ -25,21 +25,18 @@ class Sounds:
         self.get(loc).set_volume(volume)
 
     def music(self, loc_list):
-        threading.Thread(target=self.__music, args=(loc_list,)).start()
         self.music_running = True
+        threading.Thread(target=self.__music, args=(loc_list,)).start()
 
     def __music(self, loc_list):
         self.logger.info("Background music is ready.")
         x = 0
-        try:
-            while self.music_running:
-                if x >= len(loc_list):
-                    x = 0
-                self.logger.info("Loading next music: " + loc_list[x].get_name())
-                pygame.mixer.music.load(loc_list[x].get_full_path())
-                pygame.mixer.music.play()
-                x += 1
-                while pygame.mixer.music.get_busy():
-                    pass
-        except pygame.error:
-            pass
+        while self.music_running:
+            if x >= len(loc_list):
+                x = 0
+            self.logger.info("Loading next music: " + loc_list[x].get_name())
+            pygame.mixer.music.load(loc_list[x].get_full_path())
+            pygame.mixer.music.play()
+            x += 1
+            while pygame.mixer.music.get_busy():
+                pass

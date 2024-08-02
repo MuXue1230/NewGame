@@ -1,6 +1,7 @@
 from typing import Optional
 
 from snowskystudio.newgame.client.Sounds import Sounds
+from snowskystudio.newgame.client.Textures import Textures
 from snowskystudio.newgame.client.gui.MainScreen import MainScreen
 from snowskystudio.newgame.client.gui.ProcessScreen import ProcessScreen
 from snowskystudio.newgame.client.gui.SettingsScreen import SettingsScreen
@@ -13,6 +14,7 @@ from snowskystudio.newgame.newgame.NewGame import NewGame
 class Client:
     game: NewGame
     mixer: Sounds
+    texture: Textures
     screen: Optional[Screen]
     
     process_scr: ProcessScreen
