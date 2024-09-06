@@ -4,8 +4,8 @@ import PIL.Image
 import pygame
 from cn.snowskystudio.newgame.client.gui.BaseScreen import BaseScreen
 from cn.snowskystudio.newgame.resource.ResourceLocation import ResourceLocation
-from snowskystudio.newgame.client.gui.compact.BackButton import BackButton
-from snowskystudio.newgame.resource.LanguageLocation import LanguageLocation
+from cn.snowskystudio.newgame.client.gui.compact.BackButton import BackButton
+from cn.snowskystudio.newgame.resource.LanguageLocation import LanguageLocation
 
 
 class BasePageScreen(BaseScreen):
@@ -46,6 +46,9 @@ class BasePageScreen(BaseScreen):
         
         self.title_loc = LanguageLocation("newgame", "gui/base/page_screen/title")
         self.title = None
+        
+        self.compacts = {}
+        self.c_ids = []
     
     @abstractmethod
     def start(self, screen, mixer):
@@ -106,4 +109,11 @@ class BasePageScreen(BaseScreen):
         self.screen.get_screen().blit(self.background, (0, 0))
         self.screen.get_screen().blit(self.background1, (0, 0))
         self.back_button.tick(self.screen)
-        self.screen.get_screen().blit(self.title, (200, 0))
+        self.screen.get_screen().blit(self.title, (self.c100, 0))
+        
+        for comp_id in self.c_ids:
+            self.compacts[comp_id].tick(self.screen)
+    
+    def add_compact(self, c_id, compact) -> None:
+        self.compacts[c_id] = compact
+        self.c_ids.append(c_id)

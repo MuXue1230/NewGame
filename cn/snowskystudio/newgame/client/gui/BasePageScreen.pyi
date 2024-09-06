@@ -7,14 +7,16 @@ from pygame.mixer import Sound
 
 from cn.snowskystudio.newgame.client.gui.BaseScreen import BaseScreen
 from cn.snowskystudio.newgame.resource.ResourceLocation import ResourceLocation
-from snowskystudio.newgame.client.Client import Client
-from snowskystudio.newgame.client.Sounds import Sounds
-from snowskystudio.newgame.client.gui.compact.BackButton import BackButton
-from snowskystudio.newgame.client.renderer.Screen import Screen
-from snowskystudio.newgame.newgame.Config import Config
-from snowskystudio.newgame.newgame.NewGame import NewGame
-from snowskystudio.newgame.resource.LanguageLocation import LanguageLocation
-from snowskystudio.newgame.resource.Translator import Translator
+from cn.snowskystudio.newgame.client.Client import Client
+from cn.snowskystudio.newgame.client.Sounds import Sounds
+from cn.snowskystudio.newgame.client.gui.compact.BackButton import BackButton
+from cn.snowskystudio.newgame.client.gui.compact.Compact import Compact
+from cn.snowskystudio.newgame.client.renderer.Screen import Screen
+from cn.snowskystudio.newgame.newgame.Config import Config
+from cn.snowskystudio.newgame.newgame.NewGame import NewGame
+from cn.snowskystudio.newgame.resource import CompactLocation
+from cn.snowskystudio.newgame.resource.LanguageLocation import LanguageLocation
+from cn.snowskystudio.newgame.resource.Translator import Translator
 
 
 class BasePageScreen(BaseScreen):
@@ -57,8 +59,10 @@ class BasePageScreen(BaseScreen):
     screen: Screen
     trans: Translator
     
-    def __init__(self, game: NewGame, client: Client) -> Self:
-        ...
+    compacts: dict[CompactLocation, Compact]
+    c_ids: list[CompactLocation]
+    
+    def __init__(self, game: NewGame, client: Client) -> Self: ...
     
     @abstractmethod
     def start(self, screen: Screen, mixer: Sounds) -> None: ...
@@ -71,3 +75,5 @@ class BasePageScreen(BaseScreen):
     
     @abstractmethod
     def tick(self) -> None: ...
+    
+    def add_compact(self, c_id: CompactLocation, compact: Compact) -> None: ...

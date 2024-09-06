@@ -41,5 +41,3 @@ class Config:
             return self.gui
         elif key == 'lang':
             return self.lang
-        else:
-            raise KeyError("Has no key named %s" % key)

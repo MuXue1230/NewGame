@@ -1,6 +1,6 @@
 from typing import Any, Optional, Self, Type
 
-from snowskystudio.newgame.test.Logger import Logger
+from cn.snowskystudio.newgame.test.Logger import Logger
 
 
 class Arguments:

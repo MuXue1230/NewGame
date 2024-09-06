@@ -1,7 +1,7 @@
 from pygame import Surface
 
-from snowskystudio.newgame.resource.ResourceLocation import ResourceLocation
-from snowskystudio.newgame.test.Logger import Logger
+from cn.snowskystudio.newgame.resource.ResourceLocation import ResourceLocation
+from cn.snowskystudio.newgame.test.Logger import Logger
 
 
 class Textures:

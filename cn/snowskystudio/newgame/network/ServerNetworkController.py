@@ -3,8 +3,6 @@ import socket
 import threading
 
 from cn.snowskystudio.newgame.test.Logger import Logger
-from cn.snowskystudio.newgame.test.error.NetworkConnectionIndexOutOfRange import NetworkConnectionIndexOutOfRange
-from cn.snowskystudio.newgame.test.error.NetworkConnectionSendDataFailed import NetworkConnectionSendDataFailed
 
 
 class ServerNetworkController:
@@ -41,36 +39,16 @@ class ServerNetworkController:
         return self.clients
 
     def send(self, conn_id, data):
-        if conn_id < len(self.clients):
-            self.clients[conn_id].sendall("SENDDATA".encode())
-            check = self.clients[conn_id].recv(1024).decode()
-            if check == "READY":
-                self.clients[conn_id].sendall(pickle.dumps(data))
-            else:
-                raise NetworkConnectionSendDataFailed(
-                    "Server socket failed to send data to %s." % self.clients[conn_id],
-                    _from="cn.snowskystudio.newgame.network.ServerNetworkController - Line 47")
-        else:
-            raise NetworkConnectionIndexOutOfRange("The provided connection id (%d) is out of range." % conn_id,
-                                                   _from="cn.snowskystudio.newgame.network.ServerNetworkController - "
-                                                         "Line 43")
+        self.clients[conn_id].sendall("SENDDATA".encode())
+        self.clients[conn_id].recv(1024).decode()
+        self.clients[conn_id].sendall(pickle.dumps(data))
 
     def receive(self, conn_id):
-        if conn_id < len(self.clients):
-            self.clients[conn_id].sendall("RECIVEDATA".encode())
-            check = self.clients[conn_id].recv(1024).decode()
-            if check == "READY":
-                self.clients[conn_id].sendall("THEN".encode())
-                data = self.clients[conn_id].recv(1024)
-                return pickle.loads(data)
-            else:
-                raise NetworkConnectionSendDataFailed(
-                    "Server socket failed to send data to %s." % self.clients[conn_id],
-                    _from="cn.snowskystudio.newgame.network.ServerNetworkController - Line 62")
-        else:
-            raise NetworkConnectionIndexOutOfRange("The provided connection id (%d) is out of range." % conn_id,
-                                                   _from="cn.snowskystudio.newgame.network.ServerNetworkController - "
-                                                         "Line 43")
+        self.clients[conn_id].sendall("RECIVEDATA".encode())
+        self.clients[conn_id].recv(1024).decode()
+        self.clients[conn_id].sendall("THEN".encode())
+        data = self.clients[conn_id].recv(1024)
+        return pickle.loads(data)
 
     def stop(self):
         self.logger.info("Server socket stopped.")

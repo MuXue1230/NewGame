@@ -2,7 +2,7 @@ from socket import socket
 from threading import Thread
 from typing import Any, Optional, Self
 
-from snowskystudio.newgame.test.Logger import Logger
+from cn.snowskystudio.newgame.test.Logger import Logger
 
 
 class ClientNetworkController:

@@ -2,9 +2,9 @@ from typing import Any, Callable, Self
 
 from pygame import Surface
 
-from snowskystudio.newgame.client.gui.BaseScreen import BaseScreen
-from snowskystudio.newgame.resource.AnimationLocation import AnimationLocation
-from snowskystudio.newgame.test.Logger import Logger
+from cn.snowskystudio.newgame.client.gui.BaseScreen import BaseScreen
+from cn.snowskystudio.newgame.resource.AnimationLocation import AnimationLocation
+from cn.snowskystudio.newgame.test.Logger import Logger
 
 
 class Animation:

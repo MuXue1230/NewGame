@@ -11,16 +11,27 @@ class BaseScreen:
         self.game = game
         self.trans = Translator(self.game.get_config())
         self.client = client
+        
+        self.done = False
 
     @abstractmethod
     def pre_init(self):
         pass
+    
+    def __pre_init(self):
+        try:
+            self.pre_init()
+        except KeyboardInterrupt:
+            pass
 
     @abstractmethod
     def start(self, screen, mixer):
         self.screen = screen
-        threading.Thread(target=self.pre_init).start()
+        threading.Thread(target=self.__pre_init).start()
 
     @abstractmethod
     def tick(self):
         pass
+    
+    def is_done(self):
+        return self.done

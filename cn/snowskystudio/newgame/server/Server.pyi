@@ -1,6 +1,6 @@
-from snowskystudio.newgame.network.ServerNetworkController import ServerNetworkController
-from snowskystudio.newgame.newgame.NewGame import NewGame
-from snowskystudio.newgame.test.Logger import Logger
+from cn.snowskystudio.newgame.network.ServerNetworkController import ServerNetworkController
+from cn.snowskystudio.newgame.newgame.NewGame import NewGame
+from cn.snowskystudio.newgame.test.Logger import Logger
 
 
 class Server:

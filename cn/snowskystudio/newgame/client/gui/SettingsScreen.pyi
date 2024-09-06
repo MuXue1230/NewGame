@@ -1,5 +1,5 @@
 from cn.snowskystudio.newgame.client.gui.BasePageScreen import BasePageScreen
-from snowskystudio.newgame.client.Client import Client
+from cn.snowskystudio.newgame.client.Client import Client
 
 
 class SettingsScreen(BasePageScreen):

@@ -5,16 +5,16 @@ from pygame.font import Font
 from pygame.mixer import Sound
 
 from cn.snowskystudio.newgame.client.gui.BaseScreen import BaseScreen
-from snowskystudio.newgame.client.Client import Client
-from snowskystudio.newgame.client.Sounds import Sounds
-from snowskystudio.newgame.client.gui.Animation import Animation
-from snowskystudio.newgame.client.gui.compact.Button import Button
-from snowskystudio.newgame.client.renderer.Screen import Screen
-from snowskystudio.newgame.newgame.Config import Config
-from snowskystudio.newgame.newgame.NewGame import NewGame
-from snowskystudio.newgame.resource.LanguageLocation import LanguageLocation
-from snowskystudio.newgame.resource.ResourceLocation import ResourceLocation
-from snowskystudio.newgame.resource.Translator import Translator
+from cn.snowskystudio.newgame.client.Client import Client
+from cn.snowskystudio.newgame.client.Sounds import Sounds
+from cn.snowskystudio.newgame.client.gui.Animation import Animation
+from cn.snowskystudio.newgame.client.gui.compact.Button import Button
+from cn.snowskystudio.newgame.client.renderer.Screen import Screen
+from cn.snowskystudio.newgame.newgame.Config import Config
+from cn.snowskystudio.newgame.newgame.NewGame import NewGame
+from cn.snowskystudio.newgame.resource.LanguageLocation import LanguageLocation
+from cn.snowskystudio.newgame.resource.ResourceLocation import ResourceLocation
+from cn.snowskystudio.newgame.resource.Translator import Translator
 
 
 class MainScreen(BaseScreen):

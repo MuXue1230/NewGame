@@ -35,6 +35,7 @@ class WelcomeScreen(BaseScreen):
     
     def pre_init(self):
         super().pre_init()
+        self.done = True
     
     def start(self, screen, mixer):
         super().start(screen, mixer)

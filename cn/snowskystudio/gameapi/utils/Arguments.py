@@ -1,6 +1,3 @@
-from cn.snowskystudio.newgame.test.error.ArgumentNameDoesNotExists import ArgumentNameDoesNotExists
-
-
 class Arguments:
     def __init__(self, logger):
         self.args = {}
@@ -23,14 +20,10 @@ class Arguments:
             else:
                 return default
         else:
-            if arg_name in self.types.keys():
-                if arg_name in self.args.keys():
-                    return self.args[arg_name]
-                else:
-                    return self.types[arg_name](False)
+            if arg_name in self.args.keys():
+                return self.args[arg_name]
             else:
-                raise ArgumentNameDoesNotExists("Argument which is been requested does not exists.",
-                                                _from="cn.snowskystudio.gameapi.utils.Arguments - Line 25")
+                return self.types[arg_name](False)
 
     def make(self, args):
         temp = {}

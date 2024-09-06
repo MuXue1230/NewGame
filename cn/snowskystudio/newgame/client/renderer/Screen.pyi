@@ -2,8 +2,8 @@ from typing import Self
 
 from pygame import Surface
 
-from snowskystudio.newgame.client.renderer.VirtaulScreen import VirtualScreen
-from snowskystudio.newgame.test.Logger import Logger
+from cn.snowskystudio.newgame.client.renderer.VirtaulScreen import VirtualScreen
+from cn.snowskystudio.newgame.test.Logger import Logger
 
 
 class Screen:

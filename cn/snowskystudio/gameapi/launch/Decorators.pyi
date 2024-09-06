@@ -1,6 +1,6 @@
 from typing import Any, Callable, Self
 
-from snowskystudio.newgame.test.Logger import Logger
+from cn.snowskystudio.newgame.test.Logger import Logger
 
 
 class Decorators:
@@ -8,4 +8,4 @@ class Decorators:
         logger: Logger
         launcher: Callable
         def __init__(self, launcher: Callable) -> Self: ...
-        def __call__(self, args: list[Any], argv: dict[str, Any]) -> Callable: ...
+        def __call__(self, args: int, argv: list) -> Callable: ...

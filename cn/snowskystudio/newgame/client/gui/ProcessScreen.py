@@ -106,7 +106,7 @@ class ProcessScreen(BaseScreen):
         
         self.client.loading = False
         self.client.processing = True
-        self.client.DONE = True
+        self.done = True
     
     def tick(self):
         self.screen.get_screen().blit(self.bg, (0, 0))

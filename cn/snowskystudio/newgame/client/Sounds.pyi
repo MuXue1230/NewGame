@@ -1,13 +1,14 @@
 from pygame.mixer import Sound
 
-from snowskystudio.newgame.resource.ResourceLocation import ResourceLocation
-from snowskystudio.newgame.test.Logger import Logger
+from cn.snowskystudio.newgame.resource.ResourceLocation import ResourceLocation
+from cn.snowskystudio.newgame.test.Logger import Logger
 
 
 class Sounds:
     loaded: dict[str, Sound]
     logger: Logger
     music_running: bool
+    is_pause: bool
     
     def __init__(self): ...
     
@@ -20,4 +21,8 @@ class Sounds:
     
     def music(self, loc_list: list[ResourceLocation]): ...
     
+    def shell(self, loc_list: list[ResourceLocation]): ...
+    
     def __music(self, loc_list: list[ResourceLocation]): ...
+    
+    def pause(self, p: bool): ...

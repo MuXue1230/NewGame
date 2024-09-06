@@ -2,8 +2,6 @@ import sys
 from cn.snowskystudio.gameapi.launch.Decorators import Decorators
 from cn.snowskystudio.newgame.client.main.Main import Main
 
-DEBUG = True
-
 
 @Decorators.LauncherLogger
 def launch(args, argv):

@@ -1,6 +1,6 @@
 import pygame
 
-from snowskystudio.newgame.test.Logger import Logger
+from cn.snowskystudio.newgame.test.Logger import Logger
 
 
 class Textures:

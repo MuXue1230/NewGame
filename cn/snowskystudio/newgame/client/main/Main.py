@@ -1,6 +1,5 @@
 import os
 
-import pygame
 from cn.snowskystudio.gameapi.utils.Arguments import Arguments
 from cn.snowskystudio.gameapi.utils.Configuration import Configuration
 from cn.snowskystudio.newgame.client.renderer.Screen import Screen
@@ -56,7 +55,7 @@ class Main:
         self.screen.init()
         try:
             self.game.start(self.screen)
-        except pygame.error:
+        except KeyboardInterrupt:
             pass
         self.game.stop()
         self.config.save()

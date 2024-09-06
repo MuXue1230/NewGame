@@ -8,6 +8,7 @@ class Sounds:
         self.loaded = {}
         self.logger = Logger("Mixer")
         self.music_running = False
+        self.is_pause = False
 
     def get(self, loc):
         if loc.get_name() in self.loaded.keys():
@@ -26,7 +27,13 @@ class Sounds:
 
     def music(self, loc_list):
         self.music_running = True
-        threading.Thread(target=self.__music, args=(loc_list,)).start()
+        threading.Thread(target=self.shell, args=(loc_list,)).start()
+
+    def shell(self, loc_list):
+        try:
+            self.__music(loc_list)
+        except KeyboardInterrupt:
+            pass
 
     def __music(self, loc_list):
         self.logger.info("Background music is ready.")
@@ -38,5 +45,12 @@ class Sounds:
             pygame.mixer.music.load(loc_list[x].get_full_path())
             pygame.mixer.music.play()
             x += 1
-            while pygame.mixer.music.get_busy():
-                pass
+            while ((pygame.mixer.get_init() and pygame.mixer.music.get_busy()) or self.is_pause) or \
+                    (not self.is_pause and pygame.mixer.get_init() and not pygame.mixer.music.get_busy()):
+                if self.is_pause and (pygame.mixer.get_init() and pygame.mixer.music.get_busy()):
+                    pygame.mixer.music.pause()
+                elif not self.is_pause and pygame.mixer.get_init() and not pygame.mixer.music.get_busy():
+                    pygame.mixer.music.unpause()
+    
+    def pause(self, p):
+        self.is_pause = p

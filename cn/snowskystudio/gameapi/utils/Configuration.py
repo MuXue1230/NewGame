@@ -1,12 +1,5 @@
-import os
 import pickle
 import warnings
-
-from cn.snowskystudio.newgame.test.error.ConfigurationDoesNotExists import ConfigurationDoesNotExists
-from cn.snowskystudio.newgame.test.error.ConfigurationFileDoesNotExists import ConfigurationFileDoesNotExists
-from cn.snowskystudio.newgame.test.error.ConfigurationFileIsAlreadyExists import ConfigurationFileIsAlreadyExists
-from cn.snowskystudio.newgame.test.error.ConfigurationFileIsReadOnly import ConfigurationFileIsReadOnly
-from cn.snowskystudio.newgame.test.error.FunctionError import FunctionError
 
 
 class Configuration:
@@ -26,29 +19,17 @@ class Configuration:
             'gui': 1.0,
             'lang': 'zh_cn'
         }
-        if os.path.exists(self.config_file):
-            raise ConfigurationFileIsAlreadyExists("Config file already exists. It has NO NEED to init again.",
-                                                   _from="cn.snowskystudio.gameapi.utils.Configuration - Line 24")
         with open(self.config_file, "wb") as f:
             pickle.dump(self.config, f)
 
     def load(self):
         self.logger.info("Loading configuration file.")
-        if not os.path.exists(self.config_file):
-            raise ConfigurationFileDoesNotExists("Config file not found.",
-                                                 _from="cn.snowskystudio.gameapi.utils.Configuration - Line 33")
         with open(self.config_file, "rb") as f:
             self.config = pickle.load(f)
 
     def save(self):
         self.logger.info("Saving configuration file.")
-        if not os.path.exists(self.config_file):
-            raise ConfigurationFileDoesNotExists("Config file not found.",
-                                                 _from="cn.snowskystudio.gameapi.utils.Configuration - Line 41")
         with open(self.config_file, "wb") as f:
-            if not f.writable():
-                raise ConfigurationFileIsReadOnly("Config file is read only.",
-                                                  _from="cn.snowskystudio.gameapi.utils.Configuration - Line 45")
             pickle.dump(self.config, f)
 
     def is_debug(self):
@@ -60,15 +41,7 @@ class Configuration:
         self.config["debug"] = debug
 
     def set(self, key, value):
-        if key in self.config.keys():
-            self.config[key] = value
-        else:
-            raise FunctionError("Configuration does not exists, you should use 'new' but not 'set'.",
-                                _from="cn.snowskystudio.gameapi.utils.Configuration - Line 61")
+        self.config[key] = value
 
     def get(self, key):
-        if key in self.config.keys():
-            return self.config[key]
-        else:
-            raise ConfigurationDoesNotExists("Configuration does not exists.",
-                                             _from="cn.snowskystudio.gameapi.utils.Configuration - Line 68")
+        return self.config[key]

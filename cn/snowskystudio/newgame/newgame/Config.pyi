@@ -2,9 +2,9 @@ from typing import Any, Self
 
 from pyautogui import Size
 
-from snowskystudio.gameapi.utils.Arguments import Arguments
-from snowskystudio.gameapi.utils.Configuration import Configuration
-from snowskystudio.newgame.client.renderer.VirtaulScreen import VirtualScreen
+from cn.snowskystudio.gameapi.utils.Arguments import Arguments
+from cn.snowskystudio.gameapi.utils.Configuration import Configuration
+from cn.snowskystudio.newgame.client.renderer.VirtaulScreen import VirtualScreen
 
 
 class Config:

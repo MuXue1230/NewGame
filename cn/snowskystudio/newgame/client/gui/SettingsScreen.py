@@ -1,5 +1,5 @@
 from cn.snowskystudio.newgame.client.gui.BasePageScreen import BasePageScreen
-from snowskystudio.newgame.resource.LanguageLocation import LanguageLocation
+from cn.snowskystudio.newgame.resource.LanguageLocation import LanguageLocation
 
 
 class SettingsScreen(BasePageScreen):
@@ -14,6 +14,7 @@ class SettingsScreen(BasePageScreen):
     def pre_init(self):
         super().pre_init()
         self.back_button.set_action(self.__button_back)
+        self.done = True
     
     def __button_back(self):
         self.client.loading = False

@@ -180,6 +180,8 @@ class MainScreen(BaseScreen):
         self.enter_animation.init_self(self)
         self.enter_animation.get_ready()
         
+        self.done = True
+        
         while not self.client.DONE:
             pass
 

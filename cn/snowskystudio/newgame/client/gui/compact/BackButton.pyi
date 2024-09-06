@@ -2,8 +2,8 @@ from typing import override
 
 from pygame import Surface
 
-from snowskystudio.newgame.client.gui.compact.Button import Button
-from snowskystudio.newgame.client.renderer.Screen import Screen
+from cn.snowskystudio.newgame.client.gui.compact.Button import Button
+from cn.snowskystudio.newgame.client.renderer.Screen import Screen
 
 
 class BackButton(Button):

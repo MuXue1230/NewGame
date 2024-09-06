@@ -1,6 +1,6 @@
-from snowskystudio.newgame.newgame.Config import Config
-from snowskystudio.newgame.resource.LanguageLocation import LanguageLocation
-from snowskystudio.newgame.resource.ResourceLocation import ResourceLocation
+from cn.snowskystudio.newgame.newgame.Config import Config
+from cn.snowskystudio.newgame.resource.LanguageLocation import LanguageLocation
+from cn.snowskystudio.newgame.resource.ResourceLocation import ResourceLocation
 
 
 class Translator:

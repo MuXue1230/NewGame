@@ -3,10 +3,11 @@ from typing import Callable, Optional, Self
 from pygame import Surface
 from pygame.mixer import Sound
 
-from snowskystudio.newgame.client.renderer.Screen import Screen
+from cn.snowskystudio.newgame.client.gui.compact.Compact import Compact
+from cn.snowskystudio.newgame.client.renderer.Screen import Screen
 
 
-class Button:
+class Button(Compact):
     NORMAL: int
     HOVER: int
     PRESSED: int

@@ -1,10 +1,10 @@
 from typing import Optional, Self
 
 from cn.snowskystudio.newgame.test.Logger import Logger
-from snowskystudio.gameapi.utils.Arguments import Arguments
-from snowskystudio.gameapi.utils.Configuration import Configuration
-from snowskystudio.newgame.client.renderer.Screen import Screen
-from snowskystudio.newgame.newgame.NewGame import NewGame
+from cn.snowskystudio.gameapi.utils.Arguments import Arguments
+from cn.snowskystudio.gameapi.utils.Configuration import Configuration
+from cn.snowskystudio.newgame.client.renderer.Screen import Screen
+from cn.snowskystudio.newgame.newgame.NewGame import NewGame
 
 
 class Main:

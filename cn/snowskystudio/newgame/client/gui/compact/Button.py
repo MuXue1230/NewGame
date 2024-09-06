@@ -1,13 +1,16 @@
 import pygame
 
+from cn.snowskystudio.newgame.client.gui.compact.Compact import Compact
 
-class Button:
+
+class Button(Compact):
     NORMAL = 0
     HOVER = 1
     PRESSED = 2
     DISABLED = 3
 
     def __init__(self):
+        super().__init__()
         self.status = self.NORMAL
         self.x = 0
         self.y = 0

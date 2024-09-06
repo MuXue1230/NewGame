@@ -1,14 +1,16 @@
 from typing import Optional
 
-from snowskystudio.newgame.client.Sounds import Sounds
-from snowskystudio.newgame.client.Textures import Textures
-from snowskystudio.newgame.client.gui.MainScreen import MainScreen
-from snowskystudio.newgame.client.gui.ProcessScreen import ProcessScreen
-from snowskystudio.newgame.client.gui.SettingsScreen import SettingsScreen
-from snowskystudio.newgame.client.gui.WelcomeScreen import WelcomeScreen
-from snowskystudio.newgame.client.renderer.Screen import Screen
-from snowskystudio.newgame.network.ClientNetworkController import ClientNetworkController
-from snowskystudio.newgame.newgame.NewGame import NewGame
+from pygame.event import Event
+
+from cn.snowskystudio.newgame.client.Sounds import Sounds
+from cn.snowskystudio.newgame.client.Textures import Textures
+from cn.snowskystudio.newgame.client.gui.MainScreen import MainScreen
+from cn.snowskystudio.newgame.client.gui.ProcessScreen import ProcessScreen
+from cn.snowskystudio.newgame.client.gui.SettingsScreen import SettingsScreen
+from cn.snowskystudio.newgame.client.gui.WelcomeScreen import WelcomeScreen
+from cn.snowskystudio.newgame.client.renderer.Screen import Screen
+from cn.snowskystudio.newgame.network.ClientNetworkController import ClientNetworkController
+from cn.snowskystudio.newgame.newgame.NewGame import NewGame
 
 
 class Client:
@@ -37,5 +39,7 @@ class Client:
     def tick(self): ...
     
     def tick_gui(self): ...
+    
+    def event(self, event: Event): ...
     
     def stop(self): ...
