@@ -17,10 +17,6 @@ class SettingsScreen(BasePageScreen):
         self.done = True
     
     def __button_back(self):
-        self.client.loading = False
-        self.client.processing = False
-        self.client.main = False
-        self.client.settings = True
         self.client.main_scr.out = False
         self.client.main_scr.enter_animation.reverse()
         self._in = True
@@ -36,6 +32,6 @@ class SettingsScreen(BasePageScreen):
         elif self._in:
             if self.client.main_scr.enter_animation.tick():
                 return
-            self.client.settings = False
-            self.client.main = True
+            self.client.settings_scr.deactivate()
+            self.client.main_scr.activate()
             return

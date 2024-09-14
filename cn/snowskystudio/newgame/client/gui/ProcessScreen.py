@@ -79,7 +79,7 @@ class ProcessScreen(BaseScreen):
         super().start(screen, mixer)
     
     def pre_init(self):
-        self.c = self.config.get_screen().get_size()[1] / 540 * self.config.get_gui()
+        self.c = self.config.get('screen').get_size()[1] / 540 * self.config.get_gui()
         self.c25 = int((25 * self.c) - (25 * self.c) % 1)
         self.c50 = int((50 * self.c) - (50 * self.c) % 1)
         self.c100 = int((100 * self.c) - (100 * self.c) % 1)
@@ -101,11 +101,11 @@ class ProcessScreen(BaseScreen):
         
         self.bg = self.game.client.texture.get(self.bg_location)
         img = PIL.Image.frombytes('RGBA', self.bg.get_size(), pygame.image.tostring(self.bg, 'RGBA'))
-        img = img.resize(self.config.get_screen().get_size(), PIL.Image.Resampling.BICUBIC)
-        self.bg = pygame.image.fromstring(img.tobytes(), self.config.get_screen().get_size(), 'RGBA').convert()
+        img = img.resize(self.config.get('screen').get_size(), PIL.Image.Resampling.BICUBIC)
+        self.bg = pygame.image.fromstring(img.tobytes(), self.config.get('screen').get_size(), 'RGBA').convert()
         
         self.client.loading = False
-        self.client.processing = True
+        self.client.process_scr.activate()
         self.done = True
     
     def tick(self):
@@ -116,7 +116,7 @@ class ProcessScreen(BaseScreen):
         
         self.loading_animation.tick()
         
-        self.screen.get_screen().blit(self.tips, (self.c50, self.config.get_screen().get_size()[
+        self.screen.get_screen().blit(self.tips, (self.c50, self.config.get('screen').get_size()[
             1] - self.random_tip.get_height() - self.tips.get_height() / 2 - self.c50))
         self.screen.get_screen().blit(self.random_tip, (
-            self.c50, self.config.get_screen().get_size()[1] - self.tips.get_height() / 2 - self.c50))
+            self.c50, self.config.get('screen').get_size()[1] - self.tips.get_height() / 2 - self.c50))

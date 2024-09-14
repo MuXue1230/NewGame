@@ -22727,7 +22727,7 @@
                   "charOffset": 5562,
                   "charLength": 247,
                   "snippet": {
-                    "text": "            1] - self.random_tip.get_height() - self.tips.get_height() / 2 - self.c50))\r\n        self.screen.get_screen().blit(self.random_tip, (\r\n        self.c50, self.config.get_screen().get_size()[1] - self.tips.get_height() / 2 - self.c50))\r\n"
+                    "text": "            1] - self.random_tip.get_height() - self.tips.get_height() / 2 - self.c50))\r\n        self.screen.get_screen().blit(self.random_tip, (\r\n        self.c50, self.config.get('screen').get_size()[1] - self.tips.get_height() / 2 - self.c50))\r\n"
                   },
                   "sourceLanguage": "Python"
                 }
@@ -22839,7 +22839,7 @@
                   "charOffset": 2843,
                   "charLength": 347,
                   "snippet": {
-                    "text": "                                                  (self.logo_y - self.logo.get_height()) / 2 - self.c25))\r\n        self.screen.get_screen().blit(self.describe, (\r\n        (self.config.get_screen().get_size()[0] - self.logo.get_width()) / 2 + self.c100,\r\n        (self.config.get_screen().get_size()[1] - self.logo.get_height()) / 2 + self.c25))\r\n\r"
+                    "text": "                                                  (self.logo_y - self.logo.get_height()) / 2 - self.c25))\r\n        self.screen.get_screen().blit(self.describe, (\r\n        (self.config.get('screen').get_size()[0] - self.logo.get_width()) / 2 + self.c100,\r\n        (self.config.get('screen').get_size()[1] - self.logo.get_height()) / 2 + self.c25))\r\n\r"
                   },
                   "sourceLanguage": "Python"
                 }
@@ -22895,7 +22895,7 @@
                   "charOffset": 7644,
                   "charLength": 631,
                   "snippet": {
-                    "text": "                                                                                                         48 - 15 - self.animation_time].get_width()) / 2 - trans_y,\r\n                                                                                             (\r\n                                                                                                     self.screen.config.get_screen().get_size()[\r\n                                                                                                         1] -\r\n                                                                                                     self.logos[\r"
+                    "text": "                                                                                                         48 - 15 - self.animation_time].get_width()) / 2 - trans_y,\r\n                                                                                             (\r\n                                                                                                     self.screen.config.get('screen').get_size()[\r\n                                                                                                         1] -\r\n                                                                                                     self.logos[\r"
                   },
                   "sourceLanguage": "Python"
                 }
@@ -22951,7 +22951,7 @@
                   "charOffset": 6648,
                   "charLength": 377,
                   "snippet": {
-                    "text": "            self.animation_time += 1\r\n            trans_x = ((self.screen.config.get_screen().get_size()[1] - self.logos[\r\n                48 - 15 - self.animation_time].get_height()) / 2 - self.screen.c25 - self.screen.c25) * self.animation_time // (\r\n                              48 - 15)\r\n            trans_y = ((self.screen.config.get_screen().get_size()[0] - self.logos[\r"
+                    "text": "            self.animation_time += 1\r\n            trans_x = ((self.screen.config.get('screen').get_size()[1] - self.logos[\r\n                48 - 15 - self.animation_time].get_height()) / 2 - self.screen.c25 - self.screen.c25) * self.animation_time // (\r\n                              48 - 15)\r\n            trans_y = ((self.screen.config.get('screen').get_size()[0] - self.logos[\r"
                   },
                   "sourceLanguage": "Python"
                 }
@@ -23007,7 +23007,7 @@
                   "charOffset": 6206,
                   "charLength": 331,
                   "snippet": {
-                    "text": "                (self.screen.config.get_screen().get_size()[0] - self.logos[32].get_width()) / 2 + self.screen.c100, (\r\n                        self.screen.config.get_screen().get_size()[1] - self.logos[\r\n                    32].get_height()) / 2 + self.screen.c25))\r\n            return True\r\n        if self.animation_time == 63:\r"
+                    "text": "                (self.screen.config.get('screen').get_size()[0] - self.logos[32].get_width()) / 2 + self.screen.c100, (\r\n                        self.screen.config.get('screen').get_size()[1] - self.logos[\r\n                    32].get_height()) / 2 + self.screen.c25))\r\n            return True\r\n        if self.animation_time == 63:\r"
                   },
                   "sourceLanguage": "Python"
                 }
@@ -23063,7 +23063,7 @@
                   "charOffset": 2950,
                   "charLength": 344,
                   "snippet": {
-                    "text": "        self.screen.get_screen().blit(self.describe, (\r\n        (self.config.get_screen().get_size()[0] - self.logo.get_width()) / 2 + self.c100,\r\n        (self.config.get_screen().get_size()[1] - self.logo.get_height()) / 2 + self.c25))\r\n\r\n        if self.logo_y + int(5 * self.c - (10 * self.c) % 1) < self.config.get_screen().get_size()[1]:\r"
+                    "text": "        self.screen.get_screen().blit(self.describe, (\r\n        (self.config.get('screen').get_size()[0] - self.logo.get_width()) / 2 + self.c100,\r\n        (self.config.get('screen').get_size()[1] - self.logo.get_height()) / 2 + self.c25))\r\n\r\n        if self.logo_y + int(5 * self.c - (10 * self.c) % 1) < self.config.get('screen').get_size()[1]:\r"
                   },
                   "sourceLanguage": "Python"
                 }
@@ -23119,7 +23119,7 @@
                   "charOffset": 7419,
                   "charLength": 631,
                   "snippet": {
-                    "text": "                                                                                                         0] -\r\n                                                                                                     self.logos[\r\n                                                                                                         48 - 15 - self.animation_time].get_width()) / 2 - trans_y,\r\n                                                                                             (\r\n                                                                                                     self.screen.config.get_screen().get_size()[\r"
+                    "text": "                                                                                                         0] -\r\n                                                                                                     self.logos[\r\n                                                                                                         48 - 15 - self.animation_time].get_width()) / 2 - trans_y,\r\n                                                                                             (\r\n                                                                                                     self.screen.config.get('screen').get_size()[\r"
                   },
                   "sourceLanguage": "Python"
                 }
@@ -23175,7 +23175,7 @@
                   "charOffset": 5863,
                   "charLength": 462,
                   "snippet": {
-                    "text": "                (self.screen.config.get_screen().get_size()[0] - self.logos[32].get_width()) / 2, (\r\n                        self.screen.config.get_screen().get_size()[1] - self.logos[\r\n                    32].get_height()) / 2 - self.screen.c25))\r\n            self.screen.screen.get_screen().blit(self.describes[63 - self.animation_time], (\r\n                (self.screen.config.get_screen().get_size()[0] - self.logos[32].get_width()) / 2 + self.screen.c100, (\r"
+                    "text": "                (self.screen.config.get('screen').get_size()[0] - self.logos[32].get_width()) / 2, (\r\n                        self.screen.config.get('screen').get_size()[1] - self.logos[\r\n                    32].get_height()) / 2 - self.screen.c25))\r\n            self.screen.screen.get_screen().blit(self.describes[63 - self.animation_time], (\r\n                (self.screen.config.get('screen').get_size()[0] - self.logos[32].get_width()) / 2 + self.screen.c100, (\r"
                   },
                   "sourceLanguage": "Python"
                 }
@@ -23231,7 +23231,7 @@
                   "charOffset": 7137,
                   "charLength": 506,
                   "snippet": {
-                    "text": "                              48 - 15)\r\n            self.screen.screen.get_screen().blit(self.logos[48 - 15 - self.animation_time], ((\r\n                                                                                                     self.screen.config.get_screen().get_size()[\r\n                                                                                                         0] -\r\n                                                                                                     self.logos[\r"
+                    "text": "                              48 - 15)\r\n            self.screen.screen.get_screen().blit(self.logos[48 - 15 - self.animation_time], ((\r\n                                                                                                     self.screen.config.get('screen').get_size()[\r\n                                                                                                         0] -\r\n                                                                                                     self.logos[\r"
                   },
                   "sourceLanguage": "Python"
                 }

@@ -24,12 +24,12 @@ class Animations:
         frame_screen = Screen(VirtualScreen(*self.screen.size))
         frame_screen.set_screen(frame)
         frame_screen.get_screen().blit(self.screen.logo, (
-            (self.screen.config.get_screen().get_size()[0] - self.screen.logo.get_width()) / 2, (
-                    self.screen.config.get_screen().get_size()[
+            (self.screen.config.get('screen').get_size()[0] - self.screen.logo.get_width()) / 2, (
+                    self.screen.config.get('screen').get_size()[
                         1] - self.screen.logo.get_height()) / 2 - self.screen.c100))
         frame_screen.get_screen().blit(self.screen.describe, (
-            (self.screen.config.get_screen().get_size()[0] - self.screen.logo.get_width()) / 2 + self.screen.c100, (
-                    self.screen.config.get_screen().get_size()[
+            (self.screen.config.get('screen').get_size()[0] - self.screen.logo.get_width()) / 2 + self.screen.c100, (
+                    self.screen.config.get('screen').get_size()[
                         1] - self.screen.logo.get_height()) / 2 - self.screen.c50))
         self.screen.start_button.pre_render(frame_screen)
         self.screen.multi_play_button.pre_render(frame_screen)
@@ -74,11 +74,11 @@ class Animations:
                     self.animation_dict['logo'][32],
                     (
                         (
-                            self.screen.config.get_screen().get_size()[0] -
+                            self.screen.config.get('screen').get_size()[0] -
                             self.animation_dict['logo'][32].get_width()
                         ) / 2,
                         (
-                            self.screen.config.get_screen().get_size()[1] -
+                            self.screen.config.get('screen').get_size()[1] -
                             self.animation_dict['logo'][32].get_height()
                         ) / 2 - self.screen.c25
                     )
@@ -86,9 +86,9 @@ class Animations:
             self.screen.screen.get_screen().blit(
                     self.animation_dict['describe'][63 - self.animation_time],
                     (
-                        (self.screen.config.get_screen().get_size()[0] - self.animation_dict['logo'][32].get_width()) /
+                        (self.screen.config.get('screen').get_size()[0] - self.animation_dict['logo'][32].get_width()) /
                         2 + self.screen.c100,
-                        (self.screen.config.get_screen().get_size()[1] - self.animation_dict['logo'][32].get_height()) /
+                        (self.screen.config.get('screen').get_size()[1] - self.animation_dict['logo'][32].get_height()) /
                         2 + self.screen.c25
                     )
             )
@@ -99,23 +99,23 @@ class Animations:
         if self.animation_time < 33:
             self.animation_time += 1
             trans_x = ((
-                               self.screen.config.get_screen().get_size()[1] -
+                               self.screen.config.get('screen').get_size()[1] -
                                self.animation_dict['logo'][48 - 15 - self.animation_time].get_height()
                        ) / 2 - self.screen.c25 - self.screen.c25) * self.animation_time // (48 - 15)
             trans_y = ((
-                               self.screen.config.get_screen().get_size()[0] -
+                               self.screen.config.get('screen').get_size()[0] -
                                self.animation_dict['logo'][48 - 15 - self.animation_time].get_width()
                        ) / 2 - self.screen.c50) * self.animation_time // (48 - 15)
             self.screen.screen.get_screen().blit(
                     self.animation_dict['logo'][48 - 15 - self.animation_time],
                     (
                         (
-                                self.screen.config.get_screen().get_size()[0] -
+                                self.screen.config.get('screen').get_size()[0] -
                                 self.animation_dict['logo'][48 - 15 - self.animation_time].get_width()
                         ) / 2 -
                         trans_y,
                         (
-                                self.screen.config.get_screen().get_size()[1] -
+                                self.screen.config.get('screen').get_size()[1] -
                                 self.animation_dict['logo'][48 - 15 - self.animation_time].get_height()
                         ) / 2 - self.screen.c25 - trans_x)
             )
@@ -158,19 +158,19 @@ class Animations:
     def __process_loading_animation_tick(self):
         rect1 = self.rect1_rotated[90 - self.animation_time_x]
         self.screen.screen.get_screen().blit(rect1, (
-            self.screen.config.get_screen().get_size()[0] - rect1.get_width() / 2 - self.screen.c100,
-            self.screen.config.get_screen().get_size()[1] - rect1.get_height() / 2 - self.screen.c100))
+            self.screen.config.get('screen').get_size()[0] - rect1.get_width() / 2 - self.screen.c100,
+            self.screen.config.get('screen').get_size()[1] - rect1.get_height() / 2 - self.screen.c100))
         
         rect2 = self.rect2_rotated[self.animation_time_x]
         self.screen.screen.get_screen().blit(rect2, (
-            self.screen.config.get_screen().get_size()[0] - rect2.get_width() / 2 - self.screen.c100,
-            self.screen.config.get_screen().get_size()[1] - rect2.get_height() / 2 - self.screen.c100))
+            self.screen.config.get('screen').get_size()[0] - rect2.get_width() / 2 - self.screen.c100,
+            self.screen.config.get('screen').get_size()[1] - rect2.get_height() / 2 - self.screen.c100))
         self.screen.screen.get_screen().blit(self.circle, (
-            self.screen.config.get_screen().get_size()[0] - self.circle.get_width() / 2 - self.screen.c100,
-            self.screen.config.get_screen().get_size()[1] - self.circle.get_height() / 2 - self.screen.c100))
+            self.screen.config.get('screen').get_size()[0] - self.circle.get_width() / 2 - self.screen.c100,
+            self.screen.config.get('screen').get_size()[1] - self.circle.get_height() / 2 - self.screen.c100))
         self.screen.screen.get_screen().blit(self.screen.text_load, (
-            self.screen.config.get_screen().get_size()[0] - self.screen.text_load.get_width() / 2 - self.screen.c100,
-            self.screen.config.get_screen().get_size()[1] - self.screen.text_load.get_height() / 2 - self.screen.c100))
+            self.screen.config.get('screen').get_size()[0] - self.screen.text_load.get_width() / 2 - self.screen.c100,
+            self.screen.config.get('screen').get_size()[1] - self.screen.text_load.get_height() / 2 - self.screen.c100))
         
         if self.animation_time_x == 45:
             self.animation_time_y += 1

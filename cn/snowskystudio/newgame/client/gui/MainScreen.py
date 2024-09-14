@@ -56,26 +56,18 @@ class MainScreen(BaseScreen):
         self.describe_loc = LanguageLocation("newgame", "gui/welcome/describe")
 
     def __button_start(self):
-        self.client.loading = False
-        self.client.processing = True
-        self.client.main = True
-        self.client.settings = False
+        self.client.process_scr.activate()
         self.out = True
         self.enter_animation.reverse()
 
     def __button_multi_play(self):
-        self.client.loading = False
-        self.client.processing = True
-        self.client.main = True
-        self.client.settings = False
+        self.client.process_scr.activate()
         self.out = True
         self.enter_animation.reverse()
 
     def __button_settings(self):
-        self.client.loading = False
-        self.client.processing = False
-        self.client.main = False
-        self.client.settings = True
+        self.client.main_scr.deactivate()
+        self.client.settings_scr.activate()
         self.out = True
         self.enter_animation.reverse()
 
@@ -90,7 +82,7 @@ class MainScreen(BaseScreen):
         super().start(screen, mixer)
 
     def pre_init(self):
-        self.c = self.config.get_screen().get_size()[1] / 540 * self.config.get_gui()
+        self.c = self.config.get('screen').get_size()[1] / 540 * self.config.get_gui()
         self.c25 = int((25 * self.c) - (25 * self.c) % 1)
         self.c50 = int((50 * self.c) - (50 * self.c) % 1)
         self.c100 = int((100 * self.c) - (100 * self.c) % 1)
@@ -100,7 +92,7 @@ class MainScreen(BaseScreen):
         self.font16 = pygame.font.Font(self.font_location.get_full_path(), int(16 * self.c))
         self.font24 = pygame.font.Font(self.font_location.get_full_path(), int(24 * self.c))
         self.font48 = pygame.font.Font(self.font_location.get_full_path(), int(48 * self.c))
-        self.size = self.config.get_screen().get_size()
+        self.size = self.config.get('screen').get_size()
 
         normal = self.game.client.texture.get(self.normal_loc)
         normal_img = PIL.Image.frombytes('RGBA', normal.get_size(), pygame.image.tostring(normal, 'RGBA'))
@@ -185,14 +177,14 @@ class MainScreen(BaseScreen):
         while not self.client.DONE:
             pass
 
-        self.client.main = True
+        self.running = True
 
     def tick(self):
         if self.out:
             if self.enter_animation.tick():
                 return
             self.out = False
-            self.client.main = False
+            self.client.main_scr.deactivate()
             return
         elif self.enter_animation.tick():
             return
@@ -201,11 +193,11 @@ class MainScreen(BaseScreen):
             self.client.processing = False
 
             self.screen.get_screen().blit(self.logo, (
-                (self.config.get_screen().get_size()[0] - self.logo.get_width()) / 2,
-                (self.config.get_screen().get_size()[1] - self.logo.get_height()) / 2 - self.c100))
+                (self.config.get('screen').get_size()[0] - self.logo.get_width()) / 2,
+                (self.config.get('screen').get_size()[1] - self.logo.get_height()) / 2 - self.c100))
             self.screen.get_screen().blit(self.describe, (
-                (self.config.get_screen().get_size()[0] - self.logo.get_width()) / 2 + self.c100,
-                (self.config.get_screen().get_size()[1] - self.logo.get_height()) / 2 - self.c50))
+                (self.config.get('screen').get_size()[0] - self.logo.get_width()) / 2 + self.c100,
+                (self.config.get('screen').get_size()[1] - self.logo.get_height()) / 2 - self.c50))
 
             self.start_button.tick(self.screen)
             self.multi_play_button.tick(self.screen)

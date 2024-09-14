@@ -51,7 +51,7 @@ class Main:
         # Start Game
         self.logger.info("Starting Game...")
         self.game = NewGame(self.user, self.session_id, self.config, self.argument)
-        self.screen = Screen(self.game.get_config().get_screen())
+        self.screen = Screen(self.game.get_config().get('screen'))
         self.screen.init()
         try:
             self.game.start(self.screen)

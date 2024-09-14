@@ -24,10 +24,6 @@ class Client:
     main_scr: MainScreen
     settings_scr: SettingsScreen
     
-    loading: bool
-    processing: bool
-    main: bool
-    settings: bool
     DONE: bool
     
     network: ClientNetworkController

@@ -13,6 +13,7 @@ class BaseScreen:
         self.client = client
         
         self.done = False
+        self.running = False
 
     @abstractmethod
     def pre_init(self):
@@ -35,3 +36,12 @@ class BaseScreen:
     
     def is_done(self):
         return self.done
+    
+    def is_running(self):
+        return self.running
+    
+    def activate(self) -> None:
+        self.running = True
+    
+    def deactivate(self) -> None:
+        self.running = False

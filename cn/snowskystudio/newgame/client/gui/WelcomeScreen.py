@@ -41,8 +41,8 @@ class WelcomeScreen(BaseScreen):
         super().start(screen, mixer)
     
     def tick(self):
-        if self.size != self.config.get_screen().get_size():
-            self.c = self.config.get_screen().get_size()[1] / 540 * self.config.get_gui()
+        if self.size != self.config.get('screen').get_size():
+            self.c = self.config.get('screen').get_size()[1] / 540 * self.config.get_gui()
             self.c25 = int((25 * self.c) - (25 * self.c) % 1)
             self.c50 = int((50 * self.c) - (50 * self.c) % 1)
             self.c100 = int((100 * self.c) - (100 * self.c) % 1)
@@ -51,11 +51,11 @@ class WelcomeScreen(BaseScreen):
             
             self.font24 = pygame.font.Font(self.font_location.get_full_path(), int(24 * self.c))
             self.font48 = pygame.font.Font(self.font_location.get_full_path(), int(48 * self.c))
-            self.size = self.config.get_screen().get_size()
+            self.size = self.config.get('screen').get_size()
             self.bg = self.game.client.texture.get(self.bg_location)
             img = PIL.Image.frombytes('RGBA', self.bg.get_size(), pygame.image.tostring(self.bg, 'RGBA'))
-            img = img.resize(self.config.get_screen().get_size(), PIL.Image.Resampling.BICUBIC)
-            self.bg = pygame.image.fromstring(img.tobytes(), self.config.get_screen().get_size(), 'RGBA').convert()
+            img = img.resize(self.config.get('screen').get_size(), PIL.Image.Resampling.BICUBIC)
+            self.bg = pygame.image.fromstring(img.tobytes(), self.config.get('screen').get_size(), 'RGBA').convert()
             self.logo = self.font48.render(self.trans.translate(self.logo_loc), True, (255, 255, 255))
             self.describe = self.font24.render("", True, (255, 255, 255))
             
@@ -64,18 +64,18 @@ class WelcomeScreen(BaseScreen):
         
         self.screen.get_screen().blit(self.bg, (0, 0))
         
-        self.screen.get_screen().blit(self.logo, ((self.config.get_screen().get_size()[0] - self.logo.get_width()) / 2,
+        self.screen.get_screen().blit(self.logo, ((self.config.get('screen').get_size()[0] - self.logo.get_width()) / 2,
                                                   (self.logo_y - self.logo.get_height()) / 2 - self.c25))
         self.screen.get_screen().blit(self.describe, (
-            (self.config.get_screen().get_size()[0] - self.logo.get_width()) / 2 + self.c100,
-            (self.config.get_screen().get_size()[1] - self.logo.get_height()) / 2 + self.c25))
+            (self.config.get('screen').get_size()[0] - self.logo.get_width()) / 2 + self.c100,
+            (self.config.get('screen').get_size()[1] - self.logo.get_height()) / 2 + self.c25))
         
-        if self.logo_y + int(5 * self.c - (10 * self.c) % 1) < self.config.get_screen().get_size()[1]:
+        if self.logo_y + int(5 * self.c - (10 * self.c) % 1) < self.config.get('screen').get_size()[1]:
             self.logo_y += int(5 * self.c - (10 * self.c) % 1)
         else:
-            self.logo_y = self.config.get_screen().get_size()[1]
-            if self.describe_tick <= 20 * len(self.trans.translate(self.describe_loc)):
+            self.logo_y = self.config.get('screen').get_size()[1]
+            if self.describe_tick <= 15 * len(self.trans.translate(self.describe_loc)):
                 self.describe_tick += 1
-            if self.describe_tick % 20 == 0:
-                self.describe = self.font24.render(self.trans.translate(self.describe_loc)[:self.describe_tick // 20],
+            if self.describe_tick % 15 == 0:
+                self.describe = self.font24.render(self.trans.translate(self.describe_loc)[:self.describe_tick // 15],
                                                    True, (255, 255, 255))

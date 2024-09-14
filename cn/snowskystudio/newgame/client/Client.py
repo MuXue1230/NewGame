@@ -45,21 +45,21 @@ class Client:
         pygame.display.flip()
 
     def tick_gui(self):
-        if self.loading:
+        if not self.process_scr.is_done():
             self.DONE = self.process_scr.is_done() and \
                         self.welcome_scr.is_done() and \
                         self.main_scr.is_done() and \
                         self.settings_scr.is_done()
             self.welcome_scr.tick()
-        if self.processing:
+        elif not self.DONE:
             self.DONE = self.process_scr.is_done() and \
                         self.welcome_scr.is_done() and \
                         self.main_scr.is_done() and \
                         self.settings_scr.is_done()
             self.process_scr.tick()
-        if self.main:
+        if self.main_scr.is_running():
             self.main_scr.tick()
-        if self.settings:
+        if self.settings_scr.is_running():
             self.settings_scr.tick()
             
     def event(self, event):

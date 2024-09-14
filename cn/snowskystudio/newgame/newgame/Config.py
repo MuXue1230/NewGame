@@ -33,11 +33,4 @@ class Config:
         return self.lang
     
     def get(self, key):
-        if key == 'screen':
-            return self.screen
-        elif key == 'size':
-            return self.size
-        elif key == 'gui':
-            return self.gui
-        elif key == 'lang':
-            return self.lang
+        return getattr(self, key)

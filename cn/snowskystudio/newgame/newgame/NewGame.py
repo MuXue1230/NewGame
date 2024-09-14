@@ -15,7 +15,7 @@ class NewGame:
         self.logger.info("Initializing server and client")
         self.client = Client(self)
         self.running = True
-        self.past_virtual_screen = VirtualScreen(*self.config.get_screen().get_size())
+        self.past_virtual_screen = VirtualScreen(*self.config.get('screen').get_size())
         self.server_thread = None
 
     def start(self, screen):
